@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F3E7C4"/>
+      <stop offset="50%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#AA7C11"/>
+    </linearGradient>
+    <linearGradient id="wineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5A1220"/>
+      <stop offset="100%" stop-color="#2D060E"/>
+    </linearGradient>
+  </defs>
+  <rect width="100" height="100" rx="22" fill="url(#wineGrad)"/>
+  <rect x="5" y="5" width="90" height="90" rx="18" fill="none" stroke="url(#goldGrad)" stroke-width="2" stroke-opacity="0.4"/>
+  <!-- Elegant Monogram EM -->
+  <path d="M26 72 V28 H46 M26 49 H41 M26 72 H46" fill="none" stroke="url(#goldGrad)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M54 72 V28 L67 52 L80 28 V72" fill="none" stroke="url(#goldGrad)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="50" cy="84" r="2.5" fill="url(#goldGrad)"/>
+</svg>

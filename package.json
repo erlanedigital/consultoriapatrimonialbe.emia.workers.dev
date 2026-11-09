@@ -1,0 +1,16 @@
+{
+  "name": "seupatrimonionobrasil",
+  "version": "1.0.0",
+  "description": "Seu Patrimônio no Brasil - Consultoria Patrimonial e Consórcios com Erlane Mota",
+  "scripts": {
+    "build": "node -e \"const fs=require('fs'); if(!fs.existsSync('dist')) fs.mkdirSync('dist'); ['index.html','styles.css','script.js','favicon.svg','_headers','_redirects','apresentacao.mp4'].forEach(f => { if(fs.existsSync(f)) fs.copyFileSync(f, 'dist/' + f); });\""
+  },
+  "keywords": [
+    "consorcio",
+    "planejamento-patrimonial",
+    "investimento-imobiliario",
+    "brasileiros-no-exterior"
+  ],
+  "author": "Erlane Mota",
+  "license": "UNLICENSED"
+}
