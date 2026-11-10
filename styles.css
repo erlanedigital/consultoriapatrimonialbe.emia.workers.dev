@@ -299,15 +299,56 @@ nav[aria-label="Navegação por seções"] {
   display: block !important;
   width: 100% !important;
   max-width: 100vw !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 40 !important;
   overflow-x: auto !important;
   overflow-y: hidden !important;
   -webkit-overflow-scrolling: touch !important;
   touch-action: pan-x pan-y !important;
   overscroll-behavior-x: contain !important;
   scroll-behavior: smooth !important;
-  background: rgba(250, 246, 239, 0.98) !important;
-  border-top: 1px solid rgba(201, 168, 106, 0.28) !important;
-  border-bottom: 1px solid rgba(201, 168, 106, 0.28) !important;
+  background: rgba(250, 246, 239, 0.96) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border-bottom: 1px solid rgba(201, 168, 106, 0.35) !important;
+  box-shadow: 0 4px 16px rgba(90, 18, 32, 0.06) !important;
+}
+
+nav[aria-label="Navegação por seções"] > div {
+  display: flex !important;
+  width: 100% !important;
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 20px !important;
+  padding: 12px 24px !important;
+  box-sizing: border-box !important;
+}
+
+nav[aria-label="Navegação por seções"] a {
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.14em !important;
+  color: #5A1220 !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  padding: 6px 6px !important;
+  border-bottom: 2px solid transparent !important;
+  transition: all 0.2s ease-in-out !important;
+  touch-action: pan-x !important;
+}
+
+nav[aria-label="Navegação por seções"] a:hover {
+  color: #8A6E3E !important;
+  border-bottom-color: #C9A86A !important;
+  transform: translateY(-1px);
 }
 
 nav[aria-label="Navegação por seções"] a {

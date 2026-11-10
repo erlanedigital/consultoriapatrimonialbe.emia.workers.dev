@@ -1,16 +1,22 @@
-const CACHE_NAME = 'erlane-mota-pwa-v1';
+const CACHE_NAME = 'erlane-mota-pwa-v2';
 const ASSETS = [
   '/',
   '/index.html',
   '/styles.css',
   '/app-features.js',
+  '/icon-192.png',
+  '/icon-512.png',
   '/favicon.svg',
   '/manifest.json'
 ];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS))
+    caches.open(CACHE_NAME).then((cache) => {
+      return Promise.allSettled(
+        ASSETS.map((url) => cache.add(url).catch((err) => console.warn('Cache error for', url, err)))
+      );
+    })
   );
   self.skipWaiting();
 });
@@ -30,7 +36,6 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
-  // Ignore non-http(s) requests like chrome-extension
   if (!event.request.url.startsWith('http')) return;
 
   event.respondWith(
