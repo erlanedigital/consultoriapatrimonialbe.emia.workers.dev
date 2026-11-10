@@ -577,3 +577,48 @@ a[href="#instalar-app"]:hover {
   transform: translateY(-1px) scale(1.02) !important;
   box-shadow: 0 4px 12px rgba(90, 18, 32, 0.2) !important;
 }
+
+
+/* ==========================================================================
+   ESPAÇAMENTO NOBRE E AREJADO NO TOPO DO CABEÇALHO (SEM APERTO NO LOGO)
+   ========================================================================== */
+header {
+  padding-top: max(22px, env(safe-area-inset-top, 0px)) !important;
+  padding-bottom: 16px !important;
+  background-color: #FAF6EF !important;
+  border-bottom: 1px solid rgba(201, 168, 106, 0.25) !important;
+  box-shadow: 0 4px 20px rgba(90, 18, 32, 0.05) !important;
+  position: relative !important;
+  z-index: 30 !important;
+}
+
+@media (min-width: 640px) {
+  header {
+    padding-top: max(26px, env(safe-area-inset-top, 0px)) !important;
+    padding-bottom: 20px !important;
+  }
+}
+
+header > div {
+  min-height: 56px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+header a[aria-label="Erlane Mota — voltar ao topo"] {
+  display: flex !important;
+  align-items: center !important;
+  padding: 2px 0 !important;
+}
+
+#stealth-admin-trigger {
+  position: absolute !important;
+  bottom: -6px !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 8px !important;
+  margin: 0 !important;
+  display: block !important;
+}
