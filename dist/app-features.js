@@ -95,33 +95,32 @@
 
     var section = document.createElement('section');
     section.id = 'simulador';
-    section.style.cssText = 'background: #FAF6EF; padding: 70px 0; border-top: 1px solid rgba(201,168,106,0.35); border-bottom: 1px solid rgba(201,168,106,0.35); position: relative; font-family: "Manrope", "Plus Jakarta Sans", system-ui, sans-serif;';
+    section.style.cssText = 'background: #FAF6EF; padding: 60px 0; border-top: 1px solid rgba(201,168,106,0.35); border-bottom: 1px solid rgba(201,168,106,0.35); position: relative; font-family: "Manrope", "Plus Jakarta Sans", system-ui, sans-serif; width: 100%; max-width: 100vw; overflow-x: hidden; box-sizing: border-box;';
     
     section.innerHTML = [
-      '<div style="max-width: 1200px; width: 100%; margin: 0 auto; padding: 0 20px; box-sizing: border-box;">',
-      '  <div style="text-align: center; max-width: 800px; margin: 0 auto 36px auto;">',
+      '<div class="sim-container">',
+      '  <div style="text-align: center; max-width: 800px; margin: 0 auto 32px auto; padding: 0 10px;">',
       '    <span style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 18px; border-radius: 999px; background: #5A1220; color: #F3E7C4; font-size: 11px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; border: 1px solid #C9A86A; box-shadow: 0 4px 14px rgba(90,18,32,0.15);">',
       '      <span>📊</span> SIMULADOR DE PARCELAS REDUZIDAS',
       '    </span>',
-      '    <h2 style="font-family: Fraunces, Georgia, serif; font-size: clamp(26px, 4vw, 42px); font-weight: 600; color: #5A1220; margin: 18px 0 12px 0; line-height: 1.2;">',
+      '    <h2 style="font-family: Fraunces, Georgia, serif; font-size: clamp(24px, 4vw, 40px); font-weight: 600; color: #5A1220; margin: 16px 0 10px 0; line-height: 1.25;">',
       '      Simule sua carta de crédito e veja o valor na sua moeda',
       '    </h2>',
-      '    ',
       '  </div>',
-      '  <div style="background: #FFFFFF; border-radius: 28px; border: 2px solid #C9A86A; box-shadow: 0 20px 50px rgba(90, 18, 32, 0.08); padding: clamp(22px, 4vw, 40px); box-sizing: border-box;">',
-      '    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; align-items: stretch;">',
-      '      <div style="display: flex; flex-direction: column; gap: 24px; justify-content: center;">',
+      '  <div class="sim-card">',
+      '    <div class="sim-grid-layout">',
+      '      <div style="display: flex; flex-direction: column; gap: 22px; justify-content: center; width: 100%; box-sizing: border-box;">',
       '        <div>',
-      '          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">',
-      '            <label style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #5A1220;">1. Valor da Carta de Crédito:</label>',
-      '            <span id="sim-credit-text" style="font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 700; color: #5A1220;">R$ 100.000</span>',
+      '          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 4px;">',
+      '            <label style="font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #5A1220;">1. Valor da Carta de Crédito:</label>',
+      '            <span id="sim-credit-text" style="font-family: Fraunces, Georgia, serif; font-size: 21px; font-weight: 700; color: #5A1220;">R$ 100.000</span>',
       '          </div>',
-      '          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(68px, 1fr)); gap: 8px; margin-bottom: 14px;">',
-      '            <button type="button" onclick="window.setSimCredit(100000)" class="sim-c-btn active" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid #5A1220; background: #5A1220; color: #F3E7C4; cursor: pointer; transition: all 0.2s;">100 mil</button>',
-      '            <button type="button" onclick="window.setSimCredit(150000)" class="sim-c-btn" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid rgba(201,168,106,0.4); background: #FAF6EF; color: #5A1220; cursor: pointer; transition: all 0.2s;">150 mil</button>',
-      '            <button type="button" onclick="window.setSimCredit(200000)" class="sim-c-btn" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid rgba(201,168,106,0.4); background: #FAF6EF; color: #5A1220; cursor: pointer; transition: all 0.2s;">200 mil</button>',
-      '            <button type="button" onclick="window.setSimCredit(300000)" class="sim-c-btn" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid rgba(201,168,106,0.4); background: #FAF6EF; color: #5A1220; cursor: pointer; transition: all 0.2s;">300 mil</button>',
-      '            <button type="button" onclick="window.setSimCredit(500000)" class="sim-c-btn" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid rgba(201,168,106,0.4); background: #FAF6EF; color: #5A1220; cursor: pointer; transition: all 0.2s;">500 mil</button>',
+      '          <div class="sim-credit-btns-row">',
+      '            <button type="button" onclick="window.setSimCredit(100000)" class="sim-c-btn active" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid #5A1220; background: #5A1220; color: #F3E7C4; cursor: pointer; transition: all 0.2s; width: 100%;">100 mil</button>',
+      '            <button type="button" onclick="window.setSimCredit(150000)" class="sim-c-btn" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid rgba(201,168,106,0.4); background: #FAF6EF; color: #5A1220; cursor: pointer; transition: all 0.2s; width: 100%;">150 mil</button>',
+      '            <button type="button" onclick="window.setSimCredit(200000)" class="sim-c-btn" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid rgba(201,168,106,0.4); background: #FAF6EF; color: #5A1220; cursor: pointer; transition: all 0.2s; width: 100%;">200 mil</button>',
+      '            <button type="button" onclick="window.setSimCredit(300000)" class="sim-c-btn" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid rgba(201,168,106,0.4); background: #FAF6EF; color: #5A1220; cursor: pointer; transition: all 0.2s; width: 100%;">300 mil</button>',
+      '            <button type="button" onclick="window.setSimCredit(500000)" class="sim-c-btn" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid rgba(201,168,106,0.4); background: #FAF6EF; color: #5A1220; cursor: pointer; transition: all 0.2s; width: 100%;">500 mil</button>',
       '          </div>',
       '          <input type="range" id="sim-range-credit" min="80000" max="1000000" step="10000" value="100000" oninput="window.setSimCreditFromSlider(this.value)" style="width: 100%; accent-color: #C9A86A; cursor: pointer; height: 6px;">',
       '          <div style="display: flex; justify-content: space-between; font-size: 11px; color: #8A6E3E; margin-top: 4px; font-weight: 600;">',
@@ -131,19 +130,19 @@
       '          </div>',
       '        </div>',
       '        <div>',
-      '          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">',
-      '            <label style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #5A1220;">2. Prazo do Consórcio (até 220 meses):</label>',
+      '          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 4px;">',
+      '            <label style="font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #5A1220;">2. Prazo do Consórcio (até 220 meses):</label>',
       '            <span id="sim-months-text" style="font-size: 15px; font-weight: 800; color: #5A1220;">220 meses</span>',
       '          </div>',
-      '          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">',
-      '            <button type="button" onclick="window.setSimMonths(150)" class="sim-m-btn" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid rgba(201,168,106,0.4); background: #FAF6EF; color: #5A1220; cursor: pointer; transition: all 0.2s;">150 m</button>',
-      '            <button type="button" onclick="window.setSimMonths(180)" class="sim-m-btn" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid rgba(201,168,106,0.4); background: #FAF6EF; color: #5A1220; cursor: pointer; transition: all 0.2s;">180 m</button>',
-      '            <button type="button" onclick="window.setSimMonths(200)" class="sim-m-btn" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid rgba(201,168,106,0.4); background: #FAF6EF; color: #5A1220; cursor: pointer; transition: all 0.2s;">200 m</button>',
-      '            <button type="button" onclick="window.setSimMonths(220)" class="sim-m-btn active" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid #5A1220; background: #5A1220; color: #F3E7C4; cursor: pointer; transition: all 0.2s;">220 meses</button>',
+      '          <div class="sim-months-btns-row">',
+      '            <button type="button" onclick="window.setSimMonths(150)" class="sim-m-btn" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid rgba(201,168,106,0.4); background: #FAF6EF; color: #5A1220; cursor: pointer; transition: all 0.2s; width: 100%;">150 m</button>',
+      '            <button type="button" onclick="window.setSimMonths(180)" class="sim-m-btn" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid rgba(201,168,106,0.4); background: #FAF6EF; color: #5A1220; cursor: pointer; transition: all 0.2s; width: 100%;">180 m</button>',
+      '            <button type="button" onclick="window.setSimMonths(200)" class="sim-m-btn" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid rgba(201,168,106,0.4); background: #FAF6EF; color: #5A1220; cursor: pointer; transition: all 0.2s; width: 100%;">200 m</button>',
+      '            <button type="button" onclick="window.setSimMonths(220)" class="sim-m-btn active" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid #5A1220; background: #5A1220; color: #F3E7C4; cursor: pointer; transition: all 0.2s; width: 100%;">220 meses</button>',
       '          </div>',
       '        </div>',
       '        <div>',
-      '          <label style="display: block; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #5A1220; margin-bottom: 8px;">3. Sua moeda de ganho no exterior:</label>',
+      '          <label style="display: block; font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #5A1220; margin-bottom: 8px;">3. Sua moeda de ganho no exterior:</label>',
       '          <select id="sim-currency-sel" onchange="window.setSimCurrency(this.value)" style="width: 100%; background: #FAF6EF; border: 1.5px solid #C9A86A; border-radius: 12px; padding: 12px 14px; font-size: 14px; font-weight: 700; color: #5A1220; outline: none; box-sizing: border-box; cursor: pointer;">',
       '            <option value="EUR">🇪🇺 Euro (EUR €)</option>',
       '            <option value="USD">🇺🇸 Dólar Americano (USD $)</option>',
@@ -155,32 +154,29 @@
       '          </select>',
       '        </div>',
       '      </div>',
-      '      <div style="background: linear-gradient(145deg, #5A1220 0%, #3D0C16 100%); border-radius: 22px; border: 2px solid #C9A86A; padding: clamp(20px, 3vw, 32px); color: #FFFFFF; display: flex; flex-direction: column; justify-content: space-between; gap: 20px; box-shadow: 0 12px 35px rgba(90,18,32,0.25);">',
+      '      <div style="background: linear-gradient(145deg, #5A1220 0%, #3D0C16 100%); border-radius: 20px; border: 2px solid #C9A86A; padding: clamp(20px, 3.5vw, 32px); color: #FFFFFF; display: flex; flex-direction: column; justify-content: space-between; gap: 20px; box-shadow: 0 12px 35px rgba(90,18,32,0.25); box-sizing: border-box; width: 100%;">',
       '        <div>',
-      '          <div style="display: inline-block; padding: 4px 12px; border-radius: 999px; background: #C9A86A; color: #5A1220; font-size: 10px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 12px;">★ PARCELA REDUZIDA ATÉ A CONTEMPLAÇÃO</div>',
+      '          <div style="display: inline-block; padding: 4px 12px; border-radius: 999px; background: #C9A86A; color: #5A1220; font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px;">★ PARCELA REDUZIDA ATÉ A CONTEMPLAÇÃO</div>',
       '          <div style="font-size: 13px; color: rgba(255,255,255,0.8); margin-bottom: 4px;">Seu investimento mensal em Reais:</div>',
-      '          <div id="sim-reais-val" style="font-family: Fraunces, Georgia, serif; font-size: clamp(28px, 3.5vw, 40px); font-weight: 700; color: #F3E7C4;">R$ 336,36 <span style="font-size: 14px; font-weight: normal; color: rgba(255,255,255,0.7);">/mês</span></div>',
+      '          <div id="sim-reais-val" style="font-family: Fraunces, Georgia, serif; font-size: clamp(26px, 4vw, 38px); font-weight: 700; color: #F3E7C4;">R$ 336,36 <span style="font-size: 14px; font-weight: normal; color: rgba(255,255,255,0.7);">/mês</span></div>',
       '        </div>',
       '        <div style="padding-top: 14px; border-top: 1px solid rgba(201,168,106,0.3);">',
-      '          <div id="sim-foreign-title" style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #C9A86A; margin-bottom: 2px;">Equivalente no exterior em Euro:</div>',
-      '          <div id="sim-foreign-val" style="font-family: Fraunces, Georgia, serif; font-size: clamp(34px, 4.5vw, 48px); font-weight: 800; color: #F3E7C4; line-height: 1.1;">€ 57,50 <span style="font-size: 16px; font-weight: normal; color: rgba(255,255,255,0.7);">/mês</span></div>',
-      '          <div style="font-size: 12px; color: rgba(255,255,255,0.75); margin-top: 6px;">Um esforço financeiro mínimo para quem recebe em moeda forte.</div>',
+      '          <div id="sim-foreign-title" style="font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #C9A86A; margin-bottom: 2px;">Equivalente no exterior em Euro:</div>',
+      '          <div id="sim-foreign-val" style="font-family: Fraunces, Georgia, serif; font-size: clamp(32px, 6vw, 46px); font-weight: 800; color: #F3E7C4; line-height: 1.1;">€ 57,50 <span style="font-size: 15px; font-weight: normal; color: rgba(255,255,255,0.7);">/mês</span></div>',
+      '          <div style="font-size: 12px; color: rgba(255,255,255,0.75); margin-top: 6px; line-height: 1.4;">Um esforço financeiro acessível ganhando em moeda forte, com o poder de alavancagem do consórcio no Brasil.</div>',
       '        </div>',
-      '        <div style="background: rgba(0,0,0,0.25); border-radius: 12px; padding: 12px 14px; border: 1px solid rgba(201,168,106,0.4); font-size: 11.5px; line-height: 1.5; color: #F3E7C4; display: flex; align-items: flex-start; gap: 8px;">',
-      '          <span style="font-size: 15px; line-height: 1;">⚠️</span>',
-      '          <div><strong style="color: #FFFFFF;">Regra do Consórcio:</strong> A <u>parcela reduzida é válida até a contemplação</u>. Após ser contemplada, a parcela passa a ser no valor integral.</div>',
-      '        </div>',
+      '        <div style="background: rgba(255,255,255,0.06); border-radius: 12px; padding: 10px 14px; font-size: 11px; color: rgba(255,255,255,0.75); line-height: 1.4;">* Na contemplação, a parcela passa a ser no valor integral.</div>',
       '        <div>',
-      '          <button type="button" onclick="window.sendSimToWhatsApp()" style="width: 100%; box-sizing: border-box; padding: 16px 20px; border-radius: 999px; background: #C9A86A; color: #5A1220; font-size: 15px; font-weight: 800; border: none; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 8px 20px rgba(0,0,0,0.2);">',
+      '          <button type="button" onclick="window.sendSimToWhatsApp()" style="width: 100%; box-sizing: border-box; padding: 15px 18px; border-radius: 999px; background: #C9A86A; color: #5A1220; font-size: 14px; font-weight: 800; border: none; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 8px 20px rgba(0,0,0,0.2);">',
       '            <span>Simular Esta Carta no WhatsApp</span>',
       '            <span style="font-size: 18px;">➔</span>',
       '          </button>',
       '        </div>',
       '      </div>',
       '    </div>',
-      '    <div style="margin-top: 36px; padding-top: 24px; border-top: 1px solid rgba(201,168,106,0.3);">',
-      '      <div style="font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #5A1220; margin-bottom: 14px; text-align: center;">🌐 Comparativo do Esforço Mensal Reduzido em Todas as Moedas:</div>',
-      '      <div id="sim-multi-currency-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px;"></div>',
+      '    <div style="margin-top: 32px; padding-top: 20px; border-top: 1px solid rgba(201,168,106,0.3); width: 100%; box-sizing: border-box;">',
+      '      <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #5A1220; margin-bottom: 12px; text-align: center;">🌐 Comparativo do Esforço Mensal Reduzido em Todas as Moedas:</div>',
+      '      <div id="sim-multi-currency-grid" class="sim-multicurrency-grid-row"></div>',
       '    </div>',
       '  </div>',
       '</div>'
@@ -694,3 +690,65 @@
     });
   }
   
+
+  // Suporte ativo a Rolagem Touch e Drag na Barra de Navegação no Celular
+  (function initNavTouchScroll() {
+    function attachTouchDrag() {
+      var nav = document.querySelector('nav[aria-label="Navegação por seções"]');
+      if (!nav || nav.dataset.touchAttached === 'true') return;
+      nav.dataset.touchAttached = 'true';
+
+      var isDown = false;
+      var startX = 0;
+      var scrollLeft = 0;
+
+      // Mouse drag para emuladores e desktop
+      nav.addEventListener('mousedown', function(e) {
+        isDown = true;
+        startX = e.pageX - nav.offsetLeft;
+        scrollLeft = nav.scrollLeft;
+        nav.style.cursor = 'grabbing';
+      });
+
+      window.addEventListener('mouseup', function() {
+        isDown = false;
+        if (nav) nav.style.cursor = 'grab';
+      });
+
+      nav.addEventListener('mousemove', function(e) {
+        if (!isDown) return;
+        e.preventDefault();
+        var x = e.pageX - nav.offsetLeft;
+        var walk = (x - startX) * 1.5;
+        nav.scrollLeft = scrollLeft - walk;
+      });
+
+      // Touch drag nativo assistido para celular
+      var touchStartX = 0;
+      var touchStartScroll = 0;
+
+      nav.addEventListener('touchstart', function(e) {
+        if (e.touches && e.touches.length === 1) {
+          touchStartX = e.touches[0].pageX;
+          touchStartScroll = nav.scrollLeft;
+        }
+      }, { passive: true });
+
+      nav.addEventListener('touchmove', function(e) {
+        if (e.touches && e.touches.length === 1) {
+          var currentX = e.touches[0].pageX;
+          var diffX = touchStartX - currentX;
+          nav.scrollLeft = touchStartScroll + diffX;
+        }
+      }, { passive: true });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', attachTouchDrag);
+    } else {
+      attachTouchDrag();
+    }
+    window.addEventListener('load', attachTouchDrag);
+    setTimeout(attachTouchDrag, 400);
+    setTimeout(attachTouchDrag, 1200);
+  })();
