@@ -277,3 +277,62 @@ nav[aria-label="Navegação móvel"] a:hover {
   color: #8A6E3E !important;
   border-bottom: 2px solid #C9A86A !important;
 }
+
+/* ==========================================================================
+   BARRA DO TOPO E NAVEGAÇÃO DE ROLAGEM NORMAL — PADRÃO LUXO EDITORIAL
+   ========================================================================== */
+.scrollbar-none {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+header {
+  box-shadow: 0 4px 20px rgba(90, 18, 32, 0.05) !important;
+}
+
+nav[aria-label="Navegação por seções"] {
+  background: rgba(250, 246, 239, 0.98) !important;
+  border-top: 1px solid rgba(201, 168, 106, 0.28) !important;
+  border-bottom: 1px solid rgba(201, 168, 106, 0.28) !important;
+}
+
+nav[aria-label="Navegação por seções"] a {
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  font-size: 11.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+  color: #5A1220 !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  padding: 6px 4px !important;
+  border-bottom: 2px solid transparent !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+nav[aria-label="Navegação por seções"] a:hover {
+  color: #8A6E3E !important;
+  border-bottom-color: #C9A86A !important;
+  transform: translateY(-1px);
+}
+
+/* Menu desktop na barra superior */
+header nav[aria-label="Navegação principal"] a {
+  position: relative !important;
+  color: #5A1220 !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  transition: color 0.2s ease !important;
+}
+
+header nav[aria-label="Navegação principal"] a:hover {
+  color: #8A6E3E !important;
+}
