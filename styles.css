@@ -296,6 +296,15 @@ header {
 }
 
 nav[aria-label="Navegação por seções"] {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-x pan-y !important;
+  overscroll-behavior-x: contain !important;
+  scroll-behavior: smooth !important;
   background: rgba(250, 246, 239, 0.98) !important;
   border-top: 1px solid rgba(201, 168, 106, 0.28) !important;
   border-bottom: 1px solid rgba(201, 168, 106, 0.28) !important;
@@ -306,7 +315,7 @@ nav[aria-label="Navegação por seções"] a {
   flex-shrink: 0 !important;
   display: inline-flex !important;
   align-items: center !important;
-  font-size: 11.5px !important;
+  font-size: 12px !important;
   font-weight: 800 !important;
   letter-spacing: 0.12em !important;
   color: #5A1220 !important;
@@ -315,6 +324,7 @@ nav[aria-label="Navegação por seções"] a {
   padding: 6px 4px !important;
   border-bottom: 2px solid transparent !important;
   transition: all 0.2s ease-in-out !important;
+  touch-action: pan-x !important;
 }
 
 nav[aria-label="Navegação por seções"] a:hover {
@@ -336,61 +346,6 @@ header nav[aria-label="Navegação principal"] a {
 header nav[aria-label="Navegação principal"] a:hover {
   color: #8A6E3E !important;
 }
-
-
-/* ==========================================================================
-   NAVEGAÇÃO COM ROLAGEM HORIZONTAL FLUIDA E NATIVA NO CELULAR
-   ========================================================================== */
-nav[aria-label="Navegação por seções"] {
-  display: block !important;
-  width: 100% !important;
-  max-width: 100vw !important;
-  overflow-x: auto !important;
-  overflow-y: hidden !important;
-  -webkit-overflow-scrolling: touch !important;
-  touch-action: pan-x pan-y !important;
-  overscroll-behavior-x: contain !important;
-  scroll-behavior: smooth !important;
-  user-select: none !important;
-  -webkit-user-select: none !important;
-  position: relative !important;
-  background: rgba(250, 246, 239, 0.98) !important;
-  border-top: 1px solid rgba(201, 168, 106, 0.28) !important;
-  border-bottom: 1px solid rgba(201, 168, 106, 0.28) !important;
-}
-
-nav[aria-label="Navegação por seções"] > div {
-  display: inline-flex !important;
-  width: max-content !important;
-  min-width: 100% !important;
-  align-items: center !important;
-  gap: 28px !important;
-  padding: 10px 20px !important;
-  margin: 0 !important;
-  box-sizing: border-box !important;
-}
-
-nav[aria-label="Navegação por seções"] a {
-  display: inline-flex !important;
-  flex-shrink: 0 !important;
-  white-space: nowrap !important;
-  font-size: 12px !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.12em !important;
-  color: #5A1220 !important;
-  text-transform: uppercase !important;
-  text-decoration: none !important;
-  padding: 6px 4px !important;
-  border-bottom: 2px solid transparent !important;
-  transition: all 0.2s ease-in-out !important;
-  touch-action: pan-x !important;
-}
-
-nav[aria-label="Navegação por seções"] a:hover {
-  color: #8A6E3E !important;
-  border-bottom-color: #C9A86A !important;
-}
-
 
 /* ==========================================================================
    SIMULADOR 100% RESPONSIVO E ADAPTATIVO — ZERO ESTOURO DE TELA NO CELULAR
@@ -498,44 +453,4 @@ nav[aria-label="Navegação por seções"] a:hover {
   .sim-multicurrency-grid-row {
     grid-template-columns: repeat(7, 1fr) !important;
   }
-}
-
-/* ==========================================================================
-   NAVEGAÇÃO COM ROLAGEM HORIZONTAL LIVRE E FLUIDA NO CELULAR
-   ========================================================================== */
-nav[aria-label="Navegação por seções"] {
-  display: block !important;
-  width: 100% !important;
-  max-width: 100vw !important;
-  overflow-x: auto !important;
-  overflow-y: hidden !important;
-  -webkit-overflow-scrolling: touch !important;
-  touch-action: pan-x pan-y !important;
-  overscroll-behavior-x: contain !important;
-  scroll-behavior: smooth !important;
-  cursor: grab !important;
-  user-select: none !important;
-  -webkit-user-select: none !important;
-}
-
-nav[aria-label="Navegação por seções"]::-webkit-scrollbar {
-  display: none !important;
-}
-
-nav[aria-label="Navegação por seções"] > div {
-  display: inline-flex !important;
-  width: max-content !important;
-  min-width: 100% !important;
-  align-items: center !important;
-  gap: 24px !important;
-  padding: 10px 16px !important;
-  margin: 0 !important;
-  box-sizing: border-box !important;
-}
-
-nav[aria-label="Navegação por seções"] a {
-  display: inline-flex !important;
-  flex-shrink: 0 !important;
-  white-space: nowrap !important;
-  touch-action: pan-x !important;
 }
