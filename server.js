@@ -63,6 +63,6 @@ const server = http.createServer((req, res) => {
   fs.createReadStream(filePath).pipe(res);
 });
 
-server.listen(PORT, '127.0.0.1', () => {
-  console.log(`Server rodando localmente em http://localhost:${PORT}`);
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server rodando em 0.0.0.0:${PORT} (acessivel na rede Wi-Fi via http://192.168.1.6:${PORT})`);
 });

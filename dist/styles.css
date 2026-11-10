@@ -129,3 +129,44 @@ html {
     opacity: 1;
   }
 }
+
+/* ==========================================================================
+   SIMULADOR OFICIAL — PALETA BEGE & MARSALA (CONSULTORIA PATRIMONIAL)
+   ========================================================================== */
+#simulador {
+  background-color: #FAF6EF !important;
+  color: #2A181C !important;
+  display: block !important;
+  position: relative !important;
+  clear: both !important;
+}
+
+#simulador .sim-c-btn:hover,
+#simulador .sim-m-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(90, 18, 32, 0.12);
+}
+
+/* ==========================================================================
+   SUB-BARRA HORIZONTAL MOBILE — NAVEGAÇÃO PERMANENTE EM 100% DAS TELAS
+   ========================================================================== */
+#mobile-subnav {
+  display: flex !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  white-space: nowrap !important;
+  gap: 8px !important;
+  padding: 8px 16px !important;
+  background: #FAF6EF !important;
+  border-top: 1px solid rgba(201,168,106,0.3) !important;
+  border-bottom: 1px solid rgba(201,168,106,0.2) !important;
+  scrollbar-width: none !important;
+}
+#mobile-subnav::-webkit-scrollbar {
+  display: none !important;
+}
+@media (min-width: 1024px) {
+  #mobile-subnav {
+    display: none !important;
+  }
+}
