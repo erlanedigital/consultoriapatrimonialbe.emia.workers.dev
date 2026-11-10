@@ -620,35 +620,7 @@
 
   
   // Injetar sub-barra de navegação horizontal para mobile/tablets
-  function injectSubBarNavigation() {
-    if (document.getElementById('mobile-subnav')) return;
-    var header = document.querySelector('header');
-    if (!header) return;
-
-    var nav = document.createElement('nav');
-    nav.id = 'mobile-subnav';
-    nav.setAttribute('aria-label', 'Navegação rápida');
-    nav.style.cssText = 'display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch; white-space: nowrap; gap: 8px; padding: 8px 16px; background: #FAF6EF; border-top: 1px solid rgba(201,168,106,0.3); border-bottom: 1px solid rgba(201,168,106,0.2); box-sizing: border-box; align-items: center; scrollbar-width: none;';
-
-    var links = [
-      { label: 'Como funciona', href: '#como-funciona', active: false },
-      { label: '📊 Simulador', href: '#simulador', active: true },
-      { label: 'Vantagens', href: '#vantagens', active: false },
-      { label: 'Sobre', href: '#sobre', active: false },
-      { label: 'Dúvidas (FAQ)', href: '#faq', active: false },
-      { label: 'Diagnóstico', href: '#diagnostico', active: false }
-    ];
-
-    nav.innerHTML = links.map(function(item) {
-      var bg = item.active ? '#5A1220' : '#FFFFFF';
-      var color = item.active ? '#F3E7C4' : '#5A1220';
-      var border = item.active ? '1px solid #C9A86A' : '1px solid rgba(201,168,106,0.4)';
-      var weight = item.active ? '800' : '700';
-      return '<a href="' + item.href + '" style="padding: 6px 14px; border-radius: 999px; background: ' + bg + '; border: ' + border + '; font-size: 12px; font-weight: ' + weight + '; color: ' + color + '; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); flex-shrink: 0; transition: all 0.2s;">' + item.label + '</a>';
-    }).join('');
-
-    header.appendChild(nav);
-  }
+  function injectSubBarNavigation() { /* handled cleanly in header template */ }
 
   
   // Aplicação de contorno interno e estilo elegante nos boxes de formulário

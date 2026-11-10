@@ -150,26 +150,7 @@ html {
 /* ==========================================================================
    SUB-BARRA HORIZONTAL MOBILE — NAVEGAÇÃO PERMANENTE EM 100% DAS TELAS
    ========================================================================== */
-#mobile-subnav {
-  display: flex !important;
-  overflow-x: auto !important;
-  -webkit-overflow-scrolling: touch !important;
-  white-space: nowrap !important;
-  gap: 8px !important;
-  padding: 8px 16px !important;
-  background: #FAF6EF !important;
-  border-top: 1px solid rgba(201,168,106,0.3) !important;
-  border-bottom: 1px solid rgba(201,168,106,0.2) !important;
-  scrollbar-width: none !important;
-}
-#mobile-subnav::-webkit-scrollbar {
-  display: none !important;
-}
-@media (min-width: 1024px) {
-  #mobile-subnav {
-    display: none !important;
-  }
-}
+
 
 
 /* ==========================================================================
@@ -268,4 +249,31 @@ select#receber-objetivo {
   border-color: #5A1220 !important;
   box-shadow: inset 0 2px 5px rgba(90, 18, 32, 0.08), 0 0 0 3.5px rgba(201, 168, 106, 0.35) !important;
   background-color: #FFFFFF !important;
+}
+
+
+/* ==========================================================================
+   NAVEGAÇÃO MÓVEL EDITORIAL LUXO — LIMPA E ELEGANTE (SEM CÁPSULAS OU CHIPS)
+   ========================================================================== */
+nav[aria-label="Navegação móvel"] {
+  background-color: #FAF6EF !important;
+  border-top: 1px solid rgba(201, 168, 106, 0.35) !important;
+  border-bottom: 1px solid rgba(201, 168, 106, 0.35) !important;
+  padding: 8px 16px !important;
+}
+
+nav[aria-label="Navegação móvel"] a {
+  color: #5A1220 !important;
+  font-size: 11.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  padding: 6px 4px !important;
+  transition: all 0.2s ease !important;
+}
+
+nav[aria-label="Navegação móvel"] a:hover {
+  color: #8A6E3E !important;
+  border-bottom: 2px solid #C9A86A !important;
 }
