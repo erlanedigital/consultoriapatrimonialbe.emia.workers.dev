@@ -752,3 +752,86 @@
     setTimeout(attachTouchDrag, 400);
     setTimeout(attachTouchDrag, 1200);
   })();
+
+
+  // Monitor de Rolagem para Fixar a Barra de Navegação no Topo da Tela
+  (function initStickyNavWatcher() {
+    function setupWatcher() {
+      var header = document.querySelector('header');
+      var nav = document.querySelector('nav[aria-label="Navegação por seções"]');
+      if (!nav || !header) return;
+
+      var placeholder = document.getElementById('nav-sticky-placeholder');
+      if (!placeholder) {
+        placeholder = document.createElement('div');
+        placeholder.id = 'nav-sticky-placeholder';
+        placeholder.style.display = 'none';
+        nav.parentNode.insertBefore(placeholder, nav);
+      }
+
+      function updateStickyState() {
+        var headerRect = header.getBoundingClientRect();
+        // Quando o cabeçalho sair pelo topo da tela
+        if (headerRect.bottom <= 0) {
+          if (!nav.classList.contains('is-stuck')) {
+            placeholder.style.height = nav.offsetHeight + 'px';
+            placeholder.style.display = 'block';
+            nav.classList.add('is-stuck');
+          }
+        } else {
+          if (nav.classList.contains('is-stuck')) {
+            nav.classList.remove('is-stuck');
+            placeholder.style.display = 'none';
+          }
+        }
+      }
+
+      window.addEventListener('scroll', updateStickyState, { passive: true });
+      window.addEventListener('resize', updateStickyState, { passive: true });
+      updateStickyState();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupWatcher);
+    } else {
+      setupWatcher();
+    }
+    window.addEventListener('load', setupWatcher);
+    setTimeout(setupWatcher, 300);
+    setTimeout(setupWatcher, 1000);
+  })();
+
+
+  // Disparador Oficial e Suporte do Instalador do PWA no Menu
+  (function initPwaInstaller() {
+    window.addEventListener('beforeinstallprompt', function(e) {
+      try { e.preventDefault(); } catch(err) {}
+      window.deferredPwaPrompt = e;
+      console.log('PWA: evento beforeinstallprompt capturado com sucesso.');
+    });
+
+    window.triggerPwaInstall = function() {
+      if (window.deferredPwaPrompt) {
+        window.deferredPwaPrompt.prompt();
+        window.deferredPwaPrompt.userChoice.then(function(choice) {
+          if (choice && choice.outcome === 'accepted') {
+            alert('🎉 Aplicativo da Erlane Mota instalado com sucesso!');
+          }
+          window.deferredPwaPrompt = null;
+        }).catch(function() {
+          showManualInstallModal();
+        });
+      } else {
+        showManualInstallModal();
+      }
+    };
+
+    function showManualInstallModal() {
+      var isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
+      if (isIos) {
+        alert('📲 Como instalar no iPhone/iPad:\n\n1. Toque no botão de Compartilhar do Safari (quadrado com seta para cima ⎋)\n2. Role para baixo e selecione "Adicionar à Tela de Início"');
+      } else {
+        alert('📲 Como instalar no seu aparelho:\n\n1. Toque nos três pontinhos (menu) do seu navegador\n2. Selecione "Instalar aplicativo" ou "Adicionar à tela inicial"');
+      }
+    }
+  })();
