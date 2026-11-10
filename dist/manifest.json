@@ -1,0 +1,19 @@
+{
+  "name": "Erlane Mota — Consultoria Patrimonial",
+  "short_name": "Erlane Mota",
+  "description": "Planejamento patrimonial inteligente com consórcio imobiliário para brasileiros no exterior.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#FAF6EF",
+  "theme_color": "#5A1220",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

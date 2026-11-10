@@ -6,6 +6,26 @@
 
 (function() {
   'use strict';
+  // Sanitização Universal Anti-XSS e Anti-Injeção
+  function escapeHTML(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  function sanitizeUrl(url) {
+    if (!url) return '#';
+    var clean = String(url).trim();
+    if (clean.startsWith('https://') || clean.startsWith('http://') || clean.startsWith('tel:') || clean.startsWith('mailto:') || clean.startsWith('#') || clean.startsWith('/')) {
+      return clean;
+    }
+    return '#';
+  }
+  
 
   // ==========================================================================
   // 1. DADOS DE MOEDAS E COTAÇÕES CONSERVADORAS
@@ -25,6 +45,12 @@
     months: 220,
     currency: 'EUR'
   };
+
+  function calculateForeign(valBrl, currCode) {
+    var c = CURRENCIES[currCode] || CURRENCIES.EUR;
+    if (!c || !c.rate) return 0;
+    return valBrl / c.rate;
+  }
 
   function calculate(credit, months) {
     // 24% de taxa total sobre o crédito dividido pelos meses
@@ -47,6 +73,23 @@
   // ==========================================================================
   // 2. MONTAGEM DO SIMULADOR NA PÁGINA
   // ==========================================================================
+  
+  // Garantir posicionamento imediato e permanente ACIMA DO RODAPÉ (FOOTER)
+  function ensureSimulatorAboveFooter() {
+    var footer = document.querySelector('footer');
+    var sim = document.getElementById('simulador');
+    if (!footer || !footer.parentNode) return;
+
+    if (!sim) {
+      injectSimulator();
+      sim = document.getElementById('simulador');
+    }
+
+    if (sim && footer && sim.nextElementSibling !== footer) {
+      footer.parentNode.insertBefore(sim, footer);
+    }
+  }
+
   function injectSimulator() {
     if (document.getElementById('simulador')) return;
 
@@ -63,9 +106,7 @@
       '    <h2 style="font-family: Fraunces, Georgia, serif; font-size: clamp(26px, 4vw, 42px); font-weight: 600; color: #5A1220; margin: 18px 0 12px 0; line-height: 1.2;">',
       '      Simule sua carta de crédito e veja o valor na sua moeda',
       '    </h2>',
-      '    <p style="font-size: 15px; line-height: 1.6; color: #6B5A5E; margin: 0 auto; max-width: 650px;">',
-      '      No consórcio estratégico você paga <strong style="color: #5A1220;">apenas metade da amortização + taxa administrativa total</strong> diluída em até 220 meses.',
-      '    </p>',
+      '    ',
       '  </div>',
       '  <div style="background: #FFFFFF; border-radius: 28px; border: 2px solid #C9A86A; box-shadow: 0 20px 50px rgba(90, 18, 32, 0.08); padding: clamp(22px, 4vw, 40px); box-sizing: border-box;">',
       '    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; align-items: stretch;">',
@@ -146,12 +187,17 @@
     ].join('\n');
 
     // POSICIONAMENTO OFICIAL: DIRETAMENTE ACIMA DO RODAPÉ (FOOTER)
-    var footer = document.querySelector('footer');
-    if (footer && footer.parentNode) {
-      footer.parentNode.insertBefore(section, footer);
+    var host = document.getElementById('simulador-host');
+    if (host && host.parentNode) {
+      host.parentNode.insertBefore(section, host);
+      host.remove();
     } else {
-      var target = document.getElementById('faq') || document.body;
-      target.appendChild(section);
+      var footer = document.querySelector('footer');
+      if (footer && footer.parentNode) {
+        footer.parentNode.insertBefore(section, footer);
+      } else {
+        document.body.appendChild(section);
+      }
     }
 
     updateSimulatorUI();
@@ -161,30 +207,45 @@
     var calc = calculate(state.credit, state.months);
     var curr = CURRENCIES[state.currency] || CURRENCIES.EUR;
 
+    // 1. Atualizar texto do crédito
     var cText = document.getElementById('sim-credit-text');
     if (cText) cText.textContent = 'R$ ' + state.credit.toLocaleString('pt-BR');
 
+    // 2. Atualizar texto do prazo
     var mText = document.getElementById('sim-months-text');
     if (mText) mText.textContent = state.months + ' meses';
 
+    // 3. Atualizar valor em Reais (Parcela Reduzida)
     var rVal = document.getElementById('sim-reais-val');
-    if (rVal) rVal.innerHTML = 'R$ ' + calc.reducedTotal.toFixed(2).replace('.', ',') + ' <span style="font-size: 14px; font-weight: normal; color: rgba(255,255,255,0.7);">/mês</span>';
+    if (rVal) {
+      rVal.innerHTML = 'R$ ' + calc.reducedTotal.toFixed(2).replace('.', ',') + ' <span style="font-size: 14px; font-weight: normal; color: rgba(255,255,255,0.7);">/mês</span>';
+    }
 
+    // 4. Atualizar TÍTULO da moeda estrangeira
     var fTitle = document.getElementById('sim-foreign-title');
-    if (fTitle) fTitle.textContent = 'Equivalente no exterior em ' + curr.name + ':';
+    if (fTitle) {
+      fTitle.textContent = 'Equivalente no exterior em ' + curr.name + ':';
+    }
 
+    // 5. Atualizar VALOR da moeda estrangeira (Euro, Dólar, etc.)
     var fVal = calculateForeign(calc.reducedTotal, state.currency);
-    var fStr = (state.currency === 'JPY') ? Math.round(fVal).toLocaleString('pt-BR') : fVal.toFixed(2).replace('.', ',');
-    var fValEl = document.getElementById('sim-foreign-val');
-    if (fValEl) fValEl.innerHTML = curr.symbol + ' ' + fStr + ' <span style="font-size: 16px; font-weight: normal; color: rgba(255,255,255,0.7);">/mês</span>';
+    var fStr = (state.currency === 'JPY') 
+      ? Math.round(fVal).toLocaleString('pt-BR') 
+      : fVal.toFixed(2).replace('.', ',');
 
+    var fValEl = document.getElementById('sim-foreign-val');
+    if (fValEl) {
+      fValEl.innerHTML = curr.symbol + ' ' + fStr + ' <span style="font-size: 16px; font-weight: normal; color: rgba(255,255,255,0.7);">/mês</span>';
+    }
+
+    // 6. Atualizar slider e select de moeda
     var range = document.getElementById('sim-range-credit');
     if (range && Number(range.value) !== state.credit) range.value = state.credit;
 
     var sel = document.getElementById('sim-currency-sel');
     if (sel && sel.value !== state.currency) sel.value = state.currency;
 
-    // Atualizar grade multimoedas
+    // 7. Atualizar grade comparativa multimoedas com clique interativo
     var grid = document.getElementById('sim-multi-currency-grid');
     if (grid) {
       grid.innerHTML = Object.keys(CURRENCIES).map(function(k) {
@@ -192,7 +253,7 @@
         var v = calculateForeign(calc.reducedTotal, k);
         var s = (k === 'JPY') ? Math.round(v).toLocaleString('pt-BR') : v.toFixed(0);
         var isSel = (k === state.currency);
-        return '<div style="background: ' + (isSel ? '#5A1220' : '#FAF6EF') + '; border: 1.5px solid ' + (isSel ? '#C9A86A' : 'rgba(201,168,106,0.35)') + '; border-radius: 14px; padding: 10px 8px; text-align: center; color: ' + (isSel ? '#F3E7C4' : '#5A1220') + '; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">' +
+        return '<div onclick="window.setSimCurrency(\'' + k + '\')" style="cursor: pointer; transition: all 0.2s; background: ' + (isSel ? '#5A1220' : '#FFFFFF') + '; border: 1.5px solid ' + (isSel ? '#C9A86A' : 'rgba(201,168,106,0.35)') + '; border-radius: 14px; padding: 10px 8px; text-align: center; color: ' + (isSel ? '#F3E7C4' : '#5A1220') + '; box-shadow: ' + (isSel ? '0 6px 18px rgba(90,18,32,0.25)' : '0 2px 6px rgba(0,0,0,0.03)') + '; user-select: none;">' +
           '<div style="font-size: 11px; font-weight: 800; text-transform: uppercase;">' + c.flag + ' ' + k + '</div>' +
           '<div style="font-family: Fraunces, Georgia, serif; font-size: 17px; font-weight: 700; margin-top: 4px;">' + c.symbol + ' ' + s + '<span style="font-size: 11px; font-weight: normal; opacity: 0.8;">/mês</span></div>' +
         '</div>';
@@ -234,7 +295,10 @@
   };
 
   window.setSimCurrency = function(val) {
+    if (!CURRENCIES[val]) return;
     state.currency = val;
+    var sel = document.getElementById('sim-currency-sel');
+    if (sel && sel.value !== val) sel.value = val;
     updateSimulatorUI();
   };
 
@@ -539,7 +603,17 @@
 
   // Inicialização no DOM
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    
+  // Observador para monitorar a montagem do rodapé e garantir posição
+  if (typeof MutationObserver !== 'undefined') {
+    var observer = new MutationObserver(function() {
+      ensureSimulatorAboveFooter();
+      if (typeof styleFormBoxes === 'function') styleFormBoxes();
+    });
+    observer.observe(document.body || document.documentElement, { childList: true, subtree: true });
+  }
+  
+  document.addEventListener('DOMContentLoaded', init);
   } else {
     init();
   }
@@ -576,7 +650,52 @@
     header.appendChild(nav);
   }
 
+  
+  // Aplicação de contorno interno e estilo elegante nos boxes de formulário
+  function styleFormBoxes() {
+    var boxIds = ['receber-nome', 'receber-whatsapp', 'receber-mora', 'receber-objetivo'];
+    boxIds.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) {
+        el.style.backgroundColor = '#FFFFFF';
+        el.style.border = '2px solid #C9A86A';
+        el.style.borderRadius = '12px';
+        el.style.boxShadow = 'inset 0 2px 5px rgba(90, 18, 32, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05)';
+        el.style.padding = '14px 16px';
+        el.style.fontSize = '15px';
+        el.style.fontWeight = '500';
+        el.style.color = '#2A181C';
+        el.style.outline = 'none';
+
+        el.onfocus = function() {
+          el.style.borderColor = '#5A1220';
+          el.style.boxShadow = 'inset 0 2px 5px rgba(90, 18, 32, 0.08), 0 0 0 3.5px rgba(201, 168, 106, 0.35)';
+        };
+        el.onblur = function() {
+          el.style.borderColor = '#C9A86A';
+          el.style.boxShadow = 'inset 0 2px 5px rgba(90, 18, 32, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05)';
+        };
+      }
+    });
+
+    var diag = document.getElementById('diagnostico');
+    if (diag) {
+      var inputs = diag.querySelectorAll('input:not([type="checkbox"]):not([type="radio"]), select');
+      inputs.forEach(function(el) {
+        el.style.backgroundColor = '#FFFFFF';
+        el.style.border = '2px solid #C9A86A';
+        el.style.borderRadius = '12px';
+        el.style.boxShadow = 'inset 0 2px 5px rgba(90, 18, 32, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05)';
+        el.style.padding = '14px 16px';
+        el.style.fontSize = '15px';
+        el.style.color = '#2A181C';
+        el.style.outline = 'none';
+      });
+    }
+  }
+
   function init() {
+    styleFormBoxes();
     injectSubBarNavigation();
     injectSimulator();
   }
@@ -584,9 +703,22 @@
   // Tentar novamente após o carregamento completo para garantir montagem sobre o React
   window.addEventListener('load', function() {
     setTimeout(injectSimulator, 200);
+    setTimeout(styleFormBoxes, 200);
+    setTimeout(styleFormBoxes, 600);
+    setTimeout(styleFormBoxes, 1200);
+    setInterval(styleFormBoxes, 2000);
     setTimeout(injectSubBarNavigation, 200);
     setTimeout(injectSimulator, 800);
     setTimeout(injectSubBarNavigation, 800);
   });
 
 })();
+
+
+  // Registro de PWA Service Worker
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/sw.js').catch(function() {});
+    });
+  }
+  

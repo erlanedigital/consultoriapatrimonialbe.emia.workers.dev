@@ -1,7 +1,7 @@
 /**
  * Cloudflare Worker — Consultoria Patrimonial com Erlane Mota
- * Subdomínio: consultoriapatrimonialbe.emia.workers.dev
- * Proteção Bancária, Headers de Segurança e Roteamento de Static Assets (dist/)
+ * Subdomínio Oficial: consultoriapatrimonialbe.emia.workers.dev
+ * Segurança Bancária HSTS, CSP, Anti-XSS, LGPD e Static Assets PWA (dist/)
  */
 
 const SECURITY_HEADERS = {
@@ -10,6 +10,8 @@ const SECURITY_HEADERS = {
   "X-Frame-Options": "DENY",
   "Referrer-Policy": "strict-origin-when-cross-origin",
   "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=()",
+  "X-XSS-Protection": "1; mode=block",
+  "Cross-Origin-Opener-Policy": "same-origin",
   "Content-Security-Policy": "default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data: blob:; img-src 'self' https: data: blob:; media-src 'self' https: data: blob:; font-src 'self' https: data:; connect-src 'self' https:;"
 };
 
@@ -29,20 +31,22 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
-    // Health check endpoint
+    // Endpoint de Verificação de Saúde / Status
     if (url.pathname === "/api/health") {
       return new Response(JSON.stringify({
         status: "online",
         project: "consultoriapatrimonialbe",
         domain: "consultoriapatrimonialbe.emia.workers.dev",
         consultora: "Erlane Mota",
+        pwa: "enabled",
+        security: "bank-grade",
         timestamp: new Date().toISOString()
       }), {
         headers: { "Content-Type": "application/json", ...SECURITY_HEADERS }
       });
     }
 
-    // Servir assets estáticos compilados em dist/
+    // Servir assets estáticos compilados em dist/ (PWA SPA)
     if (env.ASSETS) {
       try {
         const assetResponse = await env.ASSETS.fetch(request);
