@@ -688,3 +688,87 @@ section h2.fluid-h2 {
   margin-left: auto !important;
   margin-right: auto !important;
 }
+
+
+/* ==========================================================================
+   CORREÇÃO DEFINITIVA DE ESPAÇAMENTO: SEM BURACOS ENTRE PALAVRAS & RESPIRO
+   ========================================================================== */
+
+/* 1. Eliminar alinhamento justificado e buracos entre palavras nos cards */
+#por-que-consorcio p,
+#por-que-consorcio * p,
+#depois-da-contemplacao p,
+#como-funciona p,
+#vantagens p,
+.grid article p,
+.grid div p,
+article p,
+.card p,
+div[class*="rounded-[24px]"] p {
+  text-align: left !important;
+  text-justify: auto !important;
+  word-spacing: normal !important;
+  letter-spacing: normal !important;
+  hyphens: manual !important;
+  -webkit-hyphens: manual !important;
+  line-height: 1.65 !important;
+}
+
+/* 2. Espaçamento nobre e arejado entre os cabeçalhos/frases e os quadros */
+.max-w-3xl.mx-auto.text-center {
+  margin-bottom: 2.75rem !important;
+}
+
+@media (min-width: 640px) {
+  .max-w-3xl.mx-auto.text-center {
+    margin-bottom: 3.75rem !important;
+  }
+}
+
+#por-que-consorcio .grid,
+#depois-da-contemplacao .grid,
+section[class*="bg-[#5A1220]"] .grid,
+#como-funciona .grid,
+#vantagens .grid {
+  margin-top: 3rem !important;
+}
+
+@media (min-width: 640px) {
+  #por-que-consorcio .grid,
+  #depois-da-contemplacao .grid,
+  section[class*="bg-[#5A1220]"] .grid,
+  #como-funciona .grid,
+  #vantagens .grid {
+    margin-top: 4.25rem !important;
+  }
+}
+
+/* 3. Respiro interno nos cards de Por que consórcio */
+#por-que-consorcio .rounded-\[24px\] {
+  padding: 2rem !important;
+}
+
+#por-que-consorcio .rounded-\[24px\] h3 {
+  margin-top: 0.25rem !important;
+  margin-bottom: 0.875rem !important;
+}
+
+
+/* ==========================================================================
+   TIPOGRAFIA ELEGANTE & CENTRALIZAÇÃO DOS EYEBROWS DAS SEÇÕES
+   ========================================================================== */
+.max-w-3xl.mx-auto.text-center p:first-child,
+section p[class*="tracking-"],
+p[class*="tracking-[0.24em]"],
+p[class*="tracking-[0.22em]"],
+p[class*="tracking-[0.20em]"] {
+  font-size: clamp(13.5px, 1.25vw, 15px) !important;
+  letter-spacing: 0.20em !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  text-align: center !important;
+  display: block !important;
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
