@@ -622,3 +622,23 @@ header a[aria-label="Erlane Mota — voltar ao topo"] {
   margin: 0 !important;
   display: block !important;
 }
+
+
+/* ==========================================================================
+   CENTRALIZAÇÃO ABSOLUTA DE EYEBROWS, TÍTULOS E SUBTÍTULOS DAS SEÇÕES
+   ========================================================================== */
+#depois-da-contemplacao .text-center,
+#depois-da-contemplacao h2,
+#depois-da-contemplacao p[class*="tracking-"],
+.max-w-3xl.mx-auto.text-center,
+.max-w-3xl.mx-auto.text-center > * {
+  text-align: center !important;
+}
+
+#depois-da-contemplacao p[class*="tracking-"],
+p[class*="tracking-[0.24em]"] {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: block !important;
+}
