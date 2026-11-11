@@ -700,13 +700,14 @@ section h2.fluid-h2 {
 /* Overrides de alinhamento a esquerda removidos */
 
 /* 2. Espaçamento nobre e arejado entre os cabeçalhos/frases e os quadros */
+/* Espaçamento nobre, harmônico e responsivo entre cabeçalhos e quadros */
 .max-w-3xl.mx-auto.text-center {
-  margin-bottom: 2.75rem !important;
+  margin-bottom: 1.5rem !important;
 }
 
 @media (min-width: 640px) {
   .max-w-3xl.mx-auto.text-center {
-    margin-bottom: 3.75rem !important;
+    margin-bottom: 3.5rem !important;
   }
 }
 
@@ -715,7 +716,7 @@ section h2.fluid-h2 {
 section[class*="bg-[#5A1220]"] .grid,
 #como-funciona .grid,
 #vantagens .grid {
-  margin-top: 3rem !important;
+  margin-top: 1rem !important;
 }
 
 @media (min-width: 640px) {
@@ -724,7 +725,7 @@ section[class*="bg-[#5A1220]"] .grid,
   section[class*="bg-[#5A1220]"] .grid,
   #como-funciona .grid,
   #vantagens .grid {
-    margin-top: 4.25rem !important;
+    margin-top: 4rem !important;
   }
 }
 
@@ -901,4 +902,106 @@ footer .tracking-\[0\.22em\] {
   width: auto !important;
   font-size: 11.5px !important;
   letter-spacing: 0.22em !important;
+}
+
+
+/* ==========================================================================
+   HARMONIZAÇÃO RESPONSIVA PARA DISPOSITIVOS MÓVEIS (CELULARES <= 640PX)
+   NOTA: O layout de notebook/desktop (>= 641px) é 100% preservado.
+   ========================================================================== */
+@media (max-width: 640px) {
+  /* 1. Respiro harmônico nas seções verticais (evita rolagem excessiva) */
+  section {
+    padding-top: 2.75rem !important;
+    padding-bottom: 2.75rem !important;
+  }
+
+  /* 2. Hero Section: Proporção e impacto visual áureo */
+  #topo {
+    padding-top: 1.75rem !important;
+    padding-bottom: 2.75rem !important;
+  }
+  
+  #topo h1.fluid-h1 {
+    font-size: clamp(2rem, 8vw, 2.5rem) !important;
+    line-height: 1.15 !important;
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  #topo p {
+    font-size: 15.5px !important;
+    line-height: 1.65 !important;
+    margin-top: 1rem !important;
+  }
+
+  /* 3. Cabeçalhos de Seções: Menos espaço vazio antes dos cards */
+  .max-w-3xl.mx-auto.text-center {
+    margin-bottom: 1.5rem !important;
+  }
+
+  .max-w-3xl.mx-auto.text-center h2 {
+    font-size: clamp(1.65rem, 6.5vw, 2.15rem) !important;
+    line-height: 1.2 !important;
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.6rem !important;
+  }
+
+  /* 4. Cards e Quadros: Padding interno agradável sem espremer o texto */
+  #por-que-consorcio .rounded-\[24px\],
+  #depois-da-contemplacao .rounded-\[24px\],
+  #como-funciona .rounded-\[24px\],
+  #vantagens .rounded-\[24px\],
+  div[class*="rounded-[24px]"],
+  div[class*="rounded-[28px]"] {
+    padding: 1.35rem 1.15rem !important;
+  }
+
+  /* 5. Espaçamento interno dos cards: Ícone -> Título -> Texto */
+  #por-que-consorcio .rounded-\[24px\] > div:first-child {
+    margin-bottom: 1rem !important;
+  }
+
+  #por-que-consorcio .rounded-\[24px\] h3 {
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+    font-size: 1.25rem !important;
+  }
+
+  /* 6. Simulador no Celular: Conforto visual e tátil */
+  #simulador-host,
+  #valor-flexivel {
+    padding-top: 2rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+
+  #sim-badge-reduced {
+    font-size: 12px !important;
+    padding: 5px 14px !important;
+    letter-spacing: 0.1em !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  /* 7. Card Sobre a Erlane no Mobile */
+  #sobre .rounded-\[28px\] span.font-serif {
+    font-size: 64px !important;
+    line-height: 1 !important;
+    margin-bottom: 4px !important;
+  }
+
+  #sobre .rounded-\[28px\] h3 {
+    font-size: 1.65rem !important;
+  }
+
+  /* 8. Botões e Ações no Celular */
+  button, 
+  a.rounded-full {
+    min-height: 46px !important;
+  }
+
+  /* 9. Sub-barra de Navegação: Toque suave e padding equilibrado */
+  nav.overflow-x-auto {
+    padding-top: 0.6rem !important;
+    padding-bottom: 0.6rem !important;
+  }
 }
