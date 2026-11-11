@@ -3,6 +3,7 @@
   "short_name": "Erlane Mota",
   "description": "Planejamento patrimonial inteligente com consórcio imobiliário para brasileiros no exterior.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#FAF6EF",
@@ -20,6 +21,12 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/favicon.svg",
