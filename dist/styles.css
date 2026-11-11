@@ -1059,3 +1059,62 @@ header a[aria-label*="Erlane Mota"] span span:last-child {
   margin-top: 3px !important;
   letter-spacing: 0.22em !important;
 }
+
+
+/* ==========================================================================
+   REMOÇÃO TOTAL DO BANNER FLUTUANTE DE INSTALAR APP (JÁ EXISTE NO MENU)
+   ========================================================================== */
+.pwa-banner,
+div[class*="pwa-banner"],
+div[aria-label="Instalar o app da Erlane Mota"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  z-index: -9999 !important;
+}
+
+/* ==========================================================================
+   REFINAMENTO PROPORCIONAL: CONSULTORA PATRIMONIAL NO TOPO DO SITE
+   ========================================================================== */
+header a[aria-label*="Erlane Mota"] > span:last-child {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  gap: 1px !important;
+}
+
+header a[aria-label*="Erlane Mota"] span span:first-child {
+  font-size: 15.5px !important;
+  line-height: 1.15 !important;
+  margin-bottom: 2px !important;
+  white-space: nowrap !important;
+  letter-spacing: 0.06em !important;
+}
+
+@media (min-width: 640px) {
+  header a[aria-label*="Erlane Mota"] span span:first-child {
+    font-size: 18px !important;
+  }
+}
+
+header a[aria-label*="Erlane Mota"] span span:last-child {
+  font-size: 9px !important;
+  line-height: 1.2 !important;
+  margin-top: 1px !important;
+  letter-spacing: 0.12em !important;
+  white-space: nowrap !important;
+  font-weight: 700 !important;
+  color: #8A6E3E !important;
+}
+
+@media (min-width: 640px) {
+  header a[aria-label*="Erlane Mota"] span span:last-child {
+    font-size: 10px !important;
+    letter-spacing: 0.14em !important;
+  }
+}
