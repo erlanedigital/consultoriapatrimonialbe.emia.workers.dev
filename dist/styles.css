@@ -636,7 +636,7 @@ header a[aria-label="Erlane Mota — voltar ao topo"] {
 }
 
 #depois-da-contemplacao p[class*="tracking-"],
-p[class*="tracking-[0.24em]"] {
+{
   text-align: center !important;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -655,10 +655,7 @@ section .max-w-3xl.mx-auto {
 }
 
 .max-w-3xl.mx-auto.text-center p:first-child,
-section p[class*="tracking-"],
-p[class*="tracking-[0.24em]"],
-p[class*="tracking-[0.22em]"],
-p[class*="tracking-[0.20em]"] {
+{
   text-align: center !important;
   font-size: 13.5px !important;
   letter-spacing: 0.20em !important;
@@ -670,7 +667,7 @@ p[class*="tracking-[0.20em]"] {
 
 @media (min-width: 640px) {
   .max-w-3xl.mx-auto.text-center p:first-child,
-  section p[class*="tracking-"] {
+  {
     font-size: 15px !important;
     letter-spacing: 0.22em !important;
   }
@@ -744,10 +741,7 @@ section[class*="bg-[#5A1220]"] .grid,
    TIPOGRAFIA ELEGANTE & CENTRALIZAÇÃO DOS EYEBROWS DAS SEÇÕES
    ========================================================================== */
 .max-w-3xl.mx-auto.text-center p:first-child,
-section p[class*="tracking-"],
-p[class*="tracking-[0.24em]"],
-p[class*="tracking-[0.22em]"],
-p[class*="tracking-[0.20em]"] {
+{
   font-size: clamp(13.5px, 1.25vw, 15px) !important;
   letter-spacing: 0.20em !important;
   font-weight: 800 !important;
@@ -1004,4 +998,41 @@ footer .tracking-\[0\.22em\] {
     padding-top: 0.6rem !important;
     padding-bottom: 0.6rem !important;
   }
+}
+
+
+/* ==========================================================================
+   ALINHAMENTO RIGOROSO DOS NÚMEROS DOS CARDS (01, 02, 03, etc.) À ESQUERDA
+   ========================================================================== */
+article p.tracking-\[0\.18em\],
+article p[class*="tracking-"],
+.card p[class*="tracking-"],
+p[class*="tracking-[0.18em]"],
+div[class*="rounded-[24px]"] p[class*="tracking-"],
+#por-que-consorcio article p:first-of-type,
+#como-funciona article p:first-of-type {
+  text-align: left !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  display: block !important;
+  width: auto !important;
+}
+
+/* Espaçamento elegante no nome da Consultora no topo do site */
+header a[aria-label*="Erlane Mota"] > span:last-child {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  gap: 3px !important;
+}
+
+header a[aria-label*="Erlane Mota"] span span:first-child {
+  line-height: 1.25 !important;
+  margin-bottom: 2px !important;
+}
+
+header a[aria-label*="Erlane Mota"] span span:last-child {
+  line-height: 1.35 !important;
+  margin-top: 3px !important;
+  letter-spacing: 0.22em !important;
 }
