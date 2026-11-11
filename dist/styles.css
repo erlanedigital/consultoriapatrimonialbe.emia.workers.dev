@@ -697,22 +697,7 @@ section h2.fluid-h2 {
 /* 1. Eliminar alinhamento justificado e buracos entre palavras nos cards */
 #por-que-consorcio p,
 #por-que-consorcio * p,
-#depois-da-contemplacao p,
-#como-funciona p,
-#vantagens p,
-.grid article p,
-.grid div p,
-article p,
-.card p,
-div[class*="rounded-[24px]"] p {
-  text-align: left !important;
-  text-justify: auto !important;
-  word-spacing: normal !important;
-  letter-spacing: normal !important;
-  hyphens: manual !important;
-  -webkit-hyphens: manual !important;
-  line-height: 1.65 !important;
-}
+/* Overrides de alinhamento a esquerda removidos */
 
 /* 2. Espaçamento nobre e arejado entre os cabeçalhos/frases e os quadros */
 .max-w-3xl.mx-auto.text-center {
@@ -842,20 +827,17 @@ footer .tracking-\[0\.22em\] {
 }
 
 /* ==========================================================================
-   REGRA MESTRE 32: CORPO DE TODOS OS TEXTOS JUSTIFICADOS (PADRÃO OURO)
+   REGRA MESTRE 32: CORPO DE TEXTOS JUSTIFICADOS (TITULOS E CABEÇALHOS PRESERVADOS)
    ========================================================================== */
-p,
+/* Todos os parágrafos de texto explicativo/corpo justificados com padrão áureo */
+main p,
+section p,
+article p,
+.card p,
 li,
 blockquote,
-.card p,
-article p,
-#por-que-consorcio p,
-#depois-da-contemplacao p,
-#como-funciona p,
-#vantagens p,
-#sobre p,
-.justify-body p,
-[data-body] {
+[data-body],
+.justify-body p {
   text-align: justify !important;
   text-justify: inter-word !important;
   hyphens: auto !important;
@@ -863,47 +845,31 @@ article p,
   line-height: 1.7 !important;
 }
 
-/* Exceções de Design: Títulos, Eyebrows Centrais, Botões, Selos e Rodapé */
-h1, h2, h3, h4, h5, h6,
-.eyebrow,
-.max-w-3xl.mx-auto.text-center p:first-child,
-section p[class*="tracking-"],
-p[class*="tracking-[0.24em]"],
-p[class*="tracking-[0.22em]"],
-p[class*="tracking-[0.20em]"],
-#sim-badge-reduced,
-.btn,
-button,
-a.rounded-full {
+/* Exceções de Design: Eyebrows de seções centrais e Badges */
+.max-w-3xl.mx-auto.text-center > p:first-child,
+.eyebrow {
   text-align: center !important;
 }
 
-footer,
-footer div,
-footer p,
-footer a,
-footer span {
-  text-align: left !important;
+/* Badge do Simulador: Parcela Reduzida */
+#sim-badge-reduced {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  margin: 0 auto !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+  padding: 6px 18px !important;
+  border-radius: 999px !important;
+  background: #C9A86A !important;
+  color: #5A1220 !important;
+  box-shadow: 0 3px 10px rgba(90, 18, 32, 0.2) !important;
 }
 
-
-/* ==========================================================================
-   CARD SOBRE A ERLANE: ALINHAMENTO PERFEITO À ESQUERDA & TAMANHO EM 88PX
-   ========================================================================== */
-#sobre .rounded-\[28px\],
-div[class*="rounded-[28px]"] {
-  text-align: left !important;
-}
-
-#sobre .rounded-\[28px\] *,
-div[class*="rounded-[28px]"] * {
-  text-align: left !important;
-  margin-left: 0 !important;
-}
-
-#sobre .rounded-\[28px\] span.font-serif,
-div[class*="rounded-[28px]"] span.font-serif,
-div[class*="rounded-[28px]"] span[class*="text-[88px]"] {
+/* Card Sobre a Consultora: Monograma e Identidade */
+#sobre .rounded-\[28px\] span.font-serif {
   font-size: 88px !important;
   line-height: 1 !important;
   color: #C9A86A !important;
@@ -913,16 +879,26 @@ div[class*="rounded-[28px]"] span[class*="text-[88px]"] {
   font-family: 'Fraunces', Georgia, serif !important;
 }
 
-#sobre .rounded-\[28px\] p,
-div[class*="rounded-[28px]"] p {
+#sobre .rounded-\[28px\] h3,
+#sobre .rounded-\[28px\] p[class*="tracking-"] {
   text-align: left !important;
-  display: block !important;
-  width: auto !important;
-  margin-left: 0 !important;
-  margin-right: auto !important;
 }
 
-#sobre .rounded-\[28px\] .gold-line,
-div[class*="rounded-[28px]"] .gold-line {
-  margin-left: 0 !important;
+/* Rodapé 100% alinhado à esquerda */
+footer,
+footer div,
+footer h3,
+footer p,
+footer span,
+footer a {
+  text-align: left !important;
+}
+footer p[class*="tracking-"],
+footer .tracking-\[0\.22em\] {
+  text-align: left !important;
+  margin: 4px 0 0 0 !important;
+  display: block !important;
+  width: auto !important;
+  font-size: 11.5px !important;
+  letter-spacing: 0.22em !important;
 }

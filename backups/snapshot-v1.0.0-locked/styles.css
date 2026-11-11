@@ -1,0 +1,904 @@
+/* ==========================================================================
+   SEU PATRIMÔNIO NO BRASIL — CONSULTORIA PATRIMONIAL COM ERLANE MOTA
+   Design System: Marsala Imperial (#5A1220), Dourado Champanhe (#D4AF37),
+   Linho Nobre (#FAF6EF) e Espresso (#1D0A10).
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --primary-marsala: #5A1220;
+  --primary-dark: #320710;
+  --primary-deep: #1D0A10;
+  --gold-accent: #D4AF37;
+  --gold-light: #F3E7C4;
+  --gold-dark: #A07817;
+  --bg-cream: #FAF6EF;
+  --bg-card: #FFFFFF;
+  --text-main: #2A181C;
+  --text-muted: #6B5A5E;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Manrope', 'Plus Jakarta Sans', system-ui, sans-serif;
+  color: var(--text-main);
+  background-color: var(--bg-cream);
+}
+
+.font-serif {
+  font-family: 'Fraunces', Georgia, serif;
+}
+
+/* ==========================================================================
+   REGRA SUPREMA: BLINDAGEM DE CLIQUES E MODAIS (ZERO BLOQUEIO DE TELA)
+   ========================================================================== */
+.hidden {
+  display: none !important;
+  pointer-events: none !important;
+  z-index: -9999 !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F1EDE4;
+}
+::-webkit-scrollbar-thumb {
+  background: #C4B299;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-accent);
+}
+
+/* Sub-barra de Navegação Horizontal Mobile */
+.mobile-nav-bar {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.mobile-nav-bar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.glass-dark {
+  background: rgba(29, 10, 16, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* Animações e Transições Suaves */
+.hover-lift {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hover-lift:hover {
+  transform: translateY(-3px);
+}
+
+/* Accordion FAQ */
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease-out, opacity 0.3s ease;
+  opacity: 0;
+}
+.faq-content.open {
+  max-height: 500px;
+  opacity: 1;
+}
+.faq-icon {
+  transition: transform 0.3s ease;
+}
+.faq-icon.rotated {
+  transform: rotate(180deg);
+}
+
+/* Toasts */
+#toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+.toast {
+  pointer-events: auto;
+  animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes slideIn {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   SIMULADOR OFICIAL — PALETA BEGE & MARSALA (CONSULTORIA PATRIMONIAL)
+   ========================================================================== */
+#simulador {
+  background-color: #FAF6EF !important;
+  color: #2A181C !important;
+  display: block !important;
+  position: relative !important;
+  clear: both !important;
+}
+
+#simulador .sim-c-btn:hover,
+#simulador .sim-m-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(90, 18, 32, 0.12);
+}
+
+/* ==========================================================================
+   SUB-BARRA HORIZONTAL MOBILE — NAVEGAÇÃO PERMANENTE EM 100% DAS TELAS
+   ========================================================================== */
+
+
+
+/* ==========================================================================
+   CONTORNO INTERNO REFORÇADO DOS BOXES DO FORMULÁRIO (DIAGNÓSTICO E CADASTRO)
+   ========================================================================== */
+#diagnostico input,
+#diagnostico select,
+#receber-nome,
+#receber-whatsapp,
+#receber-mora,
+#receber-objetivo,
+input#receber-nome,
+input#receber-whatsapp,
+select#receber-mora,
+select#receber-objetivo {
+  background-color: #FFFFFF !important;
+  border: 2px solid #C9A86A !important;
+  border-radius: 12px !important;
+  color: #2A181C !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  padding: 14px 16px !important;
+  box-shadow: inset 0 2px 5px rgba(90, 18, 32, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+  outline: none !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+#diagnostico input::placeholder,
+#receber-nome::placeholder,
+#receber-whatsapp::placeholder {
+  color: #8A6E3E !important;
+  opacity: 0.75 !important;
+}
+
+#diagnostico input:focus,
+#diagnostico select:focus,
+#receber-nome:focus,
+#receber-whatsapp:focus,
+#receber-mora:focus,
+#receber-objetivo:focus {
+  border-color: #5A1220 !important;
+  box-shadow: inset 0 2px 5px rgba(90, 18, 32, 0.08), 0 0 0 3.5px rgba(201, 168, 106, 0.35) !important;
+  background-color: #FFFFFF !important;
+}
+
+#diagnostico select,
+#receber-mora,
+#receber-objetivo {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235A1220' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 14px center !important;
+  background-size: 16px 16px !important;
+  padding-right: 40px !important;
+  cursor: pointer !important;
+}
+
+
+/* ==========================================================================
+   CONTORNO INTERNO E EXTERNO DOS BOXES DE FORMULÁRIO (DIAGNÓSTICO E CADASTRO)
+   ========================================================================== */
+#diagnostico input,
+#diagnostico select,
+#receber-nome,
+#receber-whatsapp,
+#receber-mora,
+#receber-objetivo,
+input#receber-nome,
+input#receber-whatsapp,
+select#receber-mora,
+select#receber-objetivo {
+  background-color: #FFFFFF !important;
+  border: 2px solid #C9A86A !important;
+  border-radius: 12px !important;
+  color: #2A181C !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  padding: 14px 16px !important;
+  box-shadow: inset 0 2px 5px rgba(90, 18, 32, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+  outline: none !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+#diagnostico input::placeholder,
+#receber-nome::placeholder,
+#receber-whatsapp::placeholder {
+  color: #8A6E3E !important;
+  opacity: 0.75 !important;
+}
+
+#diagnostico input:focus,
+#diagnostico select:focus,
+#receber-nome:focus,
+#receber-whatsapp:focus,
+#receber-mora:focus,
+#receber-objetivo:focus {
+  border-color: #5A1220 !important;
+  box-shadow: inset 0 2px 5px rgba(90, 18, 32, 0.08), 0 0 0 3.5px rgba(201, 168, 106, 0.35) !important;
+  background-color: #FFFFFF !important;
+}
+
+
+/* ==========================================================================
+   NAVEGAÇÃO MÓVEL EDITORIAL LUXO — LIMPA E ELEGANTE (SEM CÁPSULAS OU CHIPS)
+   ========================================================================== */
+nav[aria-label="Navegação móvel"] {
+  background-color: #FAF6EF !important;
+  border-top: 1px solid rgba(201, 168, 106, 0.35) !important;
+  border-bottom: 1px solid rgba(201, 168, 106, 0.35) !important;
+  padding: 8px 16px !important;
+}
+
+nav[aria-label="Navegação móvel"] a {
+  color: #5A1220 !important;
+  font-size: 11.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  padding: 6px 4px !important;
+  transition: all 0.2s ease !important;
+}
+
+nav[aria-label="Navegação móvel"] a:hover {
+  color: #8A6E3E !important;
+  border-bottom: 2px solid #C9A86A !important;
+}
+
+/* ==========================================================================
+   BARRA DO TOPO E NAVEGAÇÃO DE ROLAGEM NORMAL — PADRÃO LUXO EDITORIAL
+   ========================================================================== */
+.scrollbar-none {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+header {
+  box-shadow: 0 4px 20px rgba(90, 18, 32, 0.05) !important;
+}
+
+nav[aria-label="Navegação por seções"] {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 40 !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-x pan-y !important;
+  overscroll-behavior-x: contain !important;
+  scroll-behavior: smooth !important;
+  background: rgba(250, 246, 239, 0.96) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border-bottom: 1px solid rgba(201, 168, 106, 0.35) !important;
+  box-shadow: 0 4px 16px rgba(90, 18, 32, 0.06) !important;
+}
+
+nav[aria-label="Navegação por seções"] > div {
+  display: flex !important;
+  width: 100% !important;
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 20px !important;
+  padding: 12px 24px !important;
+  box-sizing: border-box !important;
+}
+
+nav[aria-label="Navegação por seções"] a {
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.14em !important;
+  color: #5A1220 !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  padding: 6px 6px !important;
+  border-bottom: 2px solid transparent !important;
+  transition: all 0.2s ease-in-out !important;
+  touch-action: pan-x !important;
+}
+
+nav[aria-label="Navegação por seções"] a:hover {
+  color: #8A6E3E !important;
+  border-bottom-color: #C9A86A !important;
+  transform: translateY(-1px);
+}
+
+nav[aria-label="Navegação por seções"] a {
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+  color: #5A1220 !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  padding: 6px 4px !important;
+  border-bottom: 2px solid transparent !important;
+  transition: all 0.2s ease-in-out !important;
+  touch-action: pan-x !important;
+}
+
+nav[aria-label="Navegação por seções"] a:hover {
+  color: #8A6E3E !important;
+  border-bottom-color: #C9A86A !important;
+  transform: translateY(-1px);
+}
+
+/* Menu desktop na barra superior */
+header nav[aria-label="Navegação principal"] a {
+  position: relative !important;
+  color: #5A1220 !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  transition: color 0.2s ease !important;
+}
+
+header nav[aria-label="Navegação principal"] a:hover {
+  color: #8A6E3E !important;
+}
+
+/* ==========================================================================
+   SIMULADOR 100% RESPONSIVO E ADAPTATIVO — ZERO ESTOURO DE TELA NO CELULAR
+   ========================================================================== */
+#simulador {
+  width: 100% !important;
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
+  box-sizing: border-box !important;
+}
+
+#simulador * {
+  box-sizing: border-box !important;
+}
+
+.sim-container {
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 16px !important;
+  box-sizing: border-box !important;
+}
+
+.sim-card {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  background: #FFFFFF !important;
+  border-radius: 20px !important;
+  border: 2px solid #C9A86A !important;
+  box-shadow: 0 15px 40px rgba(90, 18, 32, 0.08) !important;
+  padding: 20px 14px !important;
+}
+
+@media (min-width: 640px) {
+  .sim-container {
+    padding: 0 24px !important;
+  }
+  .sim-card {
+    border-radius: 28px !important;
+    padding: 36px 32px !important;
+  }
+}
+
+.sim-grid-layout {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 24px !important;
+  width: 100% !important;
+}
+
+@media (min-width: 880px) {
+  .sim-grid-layout {
+    display: grid !important;
+    grid-template-columns: 1.15fr 0.85fr !important;
+    gap: 32px !important;
+    align-items: stretch !important;
+  }
+}
+
+.sim-credit-btns-row {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 6px !important;
+  width: 100% !important;
+  margin-bottom: 12px !important;
+}
+
+@media (min-width: 500px) {
+  .sim-credit-btns-row {
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: 8px !important;
+  }
+}
+
+.sim-months-btns-row {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 6px !important;
+  width: 100% !important;
+}
+
+@media (min-width: 500px) {
+  .sim-months-btns-row {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 8px !important;
+  }
+}
+
+.sim-multicurrency-grid-row {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 8px !important;
+  width: 100% !important;
+}
+
+@media (min-width: 600px) {
+  .sim-multicurrency-grid-row {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 10px !important;
+  }
+}
+
+@media (min-width: 900px) {
+  .sim-multicurrency-grid-row {
+    grid-template-columns: repeat(7, 1fr) !important;
+  }
+}
+
+
+/* ==========================================================================
+   BARRA DE NAVEGAÇÃO FIXA NO TOPO DURANTE A ROLAGEM (STICKY DOCKING)
+   ========================================================================== */
+nav[aria-label="Navegação por seções"] {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 999 !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-x pan-y !important;
+  overscroll-behavior-x: contain !important;
+  scroll-behavior: smooth !important;
+  background: rgba(250, 246, 239, 0.98) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-bottom: 1.5px solid rgba(201, 168, 106, 0.4) !important;
+  box-shadow: 0 4px 20px rgba(90, 18, 32, 0.08) !important;
+}
+
+nav[aria-label="Navegação por seções"].is-stuck {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 9999 !important;
+  box-shadow: 0 6px 25px rgba(90, 18, 32, 0.12) !important;
+}
+
+nav[aria-label="Navegação por seções"] > div {
+  display: flex !important;
+  width: 100% !important;
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  padding: 12px 20px !important;
+  box-sizing: border-box !important;
+}
+
+@media (min-width: 640px) {
+  nav[aria-label="Navegação por seções"] > div {
+    padding: 12px 32px !important;
+    gap: 24px !important;
+  }
+}
+
+
+/* ==========================================================================
+   BOTÃO DISCRETO DE INSTALAR APP NO MENU DE NAVEGAÇÃO
+   ========================================================================== */
+a[href="#instalar-app"] {
+  background: rgba(201, 168, 106, 0.16) !important;
+  color: #5A1220 !important;
+  padding: 4px 12px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(201, 168, 106, 0.5) !important;
+  font-weight: 800 !important;
+  font-size: 11px !important;
+  letter-spacing: 0.12em !important;
+  box-shadow: 0 2px 6px rgba(90, 18, 32, 0.05) !important;
+  transition: all 0.2s ease-in-out !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+a[href="#instalar-app"]:hover {
+  background: #5A1220 !important;
+  color: #F3E7C4 !important;
+  border-color: #5A1220 !important;
+  transform: translateY(-1px) scale(1.02) !important;
+  box-shadow: 0 4px 12px rgba(90, 18, 32, 0.2) !important;
+}
+
+
+/* ==========================================================================
+   ESPAÇAMENTO NOBRE E AREJADO NO TOPO DO CABEÇALHO (SEM APERTO NO LOGO)
+   ========================================================================== */
+header {
+  padding-top: max(22px, env(safe-area-inset-top, 0px)) !important;
+  padding-bottom: 16px !important;
+  background-color: #FAF6EF !important;
+  border-bottom: 1px solid rgba(201, 168, 106, 0.25) !important;
+  box-shadow: 0 4px 20px rgba(90, 18, 32, 0.05) !important;
+  position: relative !important;
+  z-index: 30 !important;
+}
+
+@media (min-width: 640px) {
+  header {
+    padding-top: max(26px, env(safe-area-inset-top, 0px)) !important;
+    padding-bottom: 20px !important;
+  }
+}
+
+header > div {
+  min-height: 56px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+header a[aria-label="Erlane Mota — voltar ao topo"] {
+  display: flex !important;
+  align-items: center !important;
+  padding: 2px 0 !important;
+}
+
+#stealth-admin-trigger {
+  position: absolute !important;
+  bottom: -6px !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 8px !important;
+  margin: 0 !important;
+  display: block !important;
+}
+
+
+/* ==========================================================================
+   CENTRALIZAÇÃO ABSOLUTA DE EYEBROWS, TÍTULOS E SUBTÍTULOS DAS SEÇÕES
+   ========================================================================== */
+#depois-da-contemplacao .text-center,
+#depois-da-contemplacao h2,
+#depois-da-contemplacao p[class*="tracking-"],
+.max-w-3xl.mx-auto.text-center,
+.max-w-3xl.mx-auto.text-center > * {
+  text-align: center !important;
+}
+
+#depois-da-contemplacao p[class*="tracking-"],
+p[class*="tracking-[0.24em]"] {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: block !important;
+}
+
+
+/* ==========================================================================
+   CENTRALIZAÇÃO E TAMANHO ELEGANTE DOS CABEÇALHOS DAS SEÇÕES
+   ========================================================================== */
+.max-w-3xl.mx-auto.text-center,
+section .max-w-3xl.mx-auto {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.max-w-3xl.mx-auto.text-center p:first-child,
+section p[class*="tracking-"],
+p[class*="tracking-[0.24em]"],
+p[class*="tracking-[0.22em]"],
+p[class*="tracking-[0.20em]"] {
+  text-align: center !important;
+  font-size: 13.5px !important;
+  letter-spacing: 0.20em !important;
+  display: block !important;
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+@media (min-width: 640px) {
+  .max-w-3xl.mx-auto.text-center p:first-child,
+  section p[class*="tracking-"] {
+    font-size: 15px !important;
+    letter-spacing: 0.22em !important;
+  }
+}
+
+.max-w-3xl.mx-auto.text-center h2,
+section h2.fluid-h2 {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.max-w-3xl.mx-auto.text-center p:last-child {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+
+/* ==========================================================================
+   CORREÇÃO DEFINITIVA DE ESPAÇAMENTO: SEM BURACOS ENTRE PALAVRAS & RESPIRO
+   ========================================================================== */
+
+/* 1. Eliminar alinhamento justificado e buracos entre palavras nos cards */
+#por-que-consorcio p,
+#por-que-consorcio * p,
+/* Overrides de alinhamento a esquerda removidos */
+
+/* 2. Espaçamento nobre e arejado entre os cabeçalhos/frases e os quadros */
+.max-w-3xl.mx-auto.text-center {
+  margin-bottom: 2.75rem !important;
+}
+
+@media (min-width: 640px) {
+  .max-w-3xl.mx-auto.text-center {
+    margin-bottom: 3.75rem !important;
+  }
+}
+
+#por-que-consorcio .grid,
+#depois-da-contemplacao .grid,
+section[class*="bg-[#5A1220]"] .grid,
+#como-funciona .grid,
+#vantagens .grid {
+  margin-top: 3rem !important;
+}
+
+@media (min-width: 640px) {
+  #por-que-consorcio .grid,
+  #depois-da-contemplacao .grid,
+  section[class*="bg-[#5A1220]"] .grid,
+  #como-funciona .grid,
+  #vantagens .grid {
+    margin-top: 4.25rem !important;
+  }
+}
+
+/* 3. Respiro interno nos cards de Por que consórcio */
+#por-que-consorcio .rounded-\[24px\] {
+  padding: 2rem !important;
+}
+
+#por-que-consorcio .rounded-\[24px\] h3 {
+  margin-top: 0.25rem !important;
+  margin-bottom: 0.875rem !important;
+}
+
+
+/* ==========================================================================
+   TIPOGRAFIA ELEGANTE & CENTRALIZAÇÃO DOS EYEBROWS DAS SEÇÕES
+   ========================================================================== */
+.max-w-3xl.mx-auto.text-center p:first-child,
+section p[class*="tracking-"],
+p[class*="tracking-[0.24em]"],
+p[class*="tracking-[0.22em]"],
+p[class*="tracking-[0.20em]"] {
+  font-size: clamp(13.5px, 1.25vw, 15px) !important;
+  letter-spacing: 0.20em !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  text-align: center !important;
+  display: block !important;
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+
+/* ==========================================================================
+   BADGE DO SIMULADOR: PARCELA REDUZIDA CENTRALIZADA E COM FONTE MAIOR
+   ========================================================================== */
+#sim-badge-reduced {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  margin: 0 auto !important;
+  font-size: 12.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+  padding: 6px 18px !important;
+  border-radius: 999px !important;
+  background: #C9A86A !important;
+  color: #5A1220 !important;
+  box-shadow: 0 3px 10px rgba(90, 18, 32, 0.2) !important;
+}
+
+@media (min-width: 640px) {
+  #sim-badge-reduced {
+    font-size: 13.5px !important;
+    padding: 7px 20px !important;
+    letter-spacing: 0.14em !important;
+  }
+}
+
+
+/* ==========================================================================
+   ALINHAMENTO RIGOROSO DO RODAPÉ (SEM DESVIO OU CENTRALIZAÇÃO INDESEJADA)
+   ========================================================================== */
+footer,
+footer div,
+footer p,
+footer a {
+  text-align: left !important;
+}
+
+footer p {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  width: auto !important;
+}
+
+footer p[class*="tracking-"],
+footer .tracking-\[0\.22em\] {
+  text-align: left !important;
+  margin: 4px 0 0 0 !important;
+  display: block !important;
+  width: auto !important;
+  font-size: 11.5px !important;
+  letter-spacing: 0.22em !important;
+}
+
+
+/* ==========================================================================
+   ESPAÇAMENTO ENTRE SÍMBOLO E FRASE (CARDS DE CONSÓRCIO)
+   ========================================================================== */
+#por-que-consorcio .rounded-\[24px\] > div:first-child {
+  margin-bottom: 1.75rem !important;
+}
+
+#por-que-consorcio .rounded-\[24px\] h3 {
+  margin-top: 1.25rem !important;
+  margin-bottom: 0.875rem !important;
+}
+
+/* ==========================================================================
+   REGRA MESTRE 32: CORPO DE TEXTOS JUSTIFICADOS (TITULOS E CABEÇALHOS PRESERVADOS)
+   ========================================================================== */
+/* Todos os parágrafos de texto explicativo/corpo justificados com padrão áureo */
+main p,
+section p,
+article p,
+.card p,
+li,
+blockquote,
+[data-body],
+.justify-body p {
+  text-align: justify !important;
+  text-justify: inter-word !important;
+  hyphens: auto !important;
+  -webkit-hyphens: auto !important;
+  line-height: 1.7 !important;
+}
+
+/* Exceções de Design: Eyebrows de seções centrais e Badges */
+.max-w-3xl.mx-auto.text-center > p:first-child,
+.eyebrow {
+  text-align: center !important;
+}
+
+/* Badge do Simulador: Parcela Reduzida */
+#sim-badge-reduced {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  margin: 0 auto !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+  padding: 6px 18px !important;
+  border-radius: 999px !important;
+  background: #C9A86A !important;
+  color: #5A1220 !important;
+  box-shadow: 0 3px 10px rgba(90, 18, 32, 0.2) !important;
+}
+
+/* Card Sobre a Consultora: Monograma e Identidade */
+#sobre .rounded-\[28px\] span.font-serif {
+  font-size: 88px !important;
+  line-height: 1 !important;
+  color: #C9A86A !important;
+  display: block !important;
+  text-align: left !important;
+  margin-bottom: 8px !important;
+  font-family: 'Fraunces', Georgia, serif !important;
+}
+
+#sobre .rounded-\[28px\] h3,
+#sobre .rounded-\[28px\] p[class*="tracking-"] {
+  text-align: left !important;
+}
+
+/* Rodapé 100% alinhado à esquerda */
+footer,
+footer div,
+footer h3,
+footer p,
+footer span,
+footer a {
+  text-align: left !important;
+}
+footer p[class*="tracking-"],
+footer .tracking-\[0\.22em\] {
+  text-align: left !important;
+  margin: 4px 0 0 0 !important;
+  display: block !important;
+  width: auto !important;
+  font-size: 11.5px !important;
+  letter-spacing: 0.22em !important;
+}

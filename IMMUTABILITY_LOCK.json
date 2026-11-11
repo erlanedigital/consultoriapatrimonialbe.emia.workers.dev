@@ -1,0 +1,13 @@
+{
+  "status": "LOCKED",
+  "mode": "REVIEW_ONLY",
+  "approved_version": "v1.0.0-stable",
+  "timestamp": "2026-11-11T01:22:27.169Z",
+  "cf_worker_url": "https://consultoriapatrimonialbe.emia.workers.dev",
+  "cf_version_id": "fd3783d7-e64b-4a20-a0a7-bc8aac99964e",
+  "rules_enforced": {
+    "rule_14": "Modo Review-Only & Imutabilidade pós-aprovação ativa. Nenhuma alteração sem autorização explícita do usuário.",
+    "rule_15": "Segurança Bancária, HSTS, CSP, Anti-XSS, backups estáveis.",
+    "rule_32": "Justificação áurea do corpo de textos em todo o site com alinhamentos originais de títulos e cabeçalhos preservados."
+  }
+}
