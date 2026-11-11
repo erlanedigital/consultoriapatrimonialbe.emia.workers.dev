@@ -642,3 +642,49 @@ p[class*="tracking-[0.24em]"] {
   margin-right: auto !important;
   display: block !important;
 }
+
+
+/* ==========================================================================
+   CENTRALIZAÇÃO E TAMANHO ELEGANTE DOS CABEÇALHOS DAS SEÇÕES
+   ========================================================================== */
+.max-w-3xl.mx-auto.text-center,
+section .max-w-3xl.mx-auto {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.max-w-3xl.mx-auto.text-center p:first-child,
+section p[class*="tracking-"],
+p[class*="tracking-[0.24em]"],
+p[class*="tracking-[0.22em]"],
+p[class*="tracking-[0.20em]"] {
+  text-align: center !important;
+  font-size: 13.5px !important;
+  letter-spacing: 0.20em !important;
+  display: block !important;
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+@media (min-width: 640px) {
+  .max-w-3xl.mx-auto.text-center p:first-child,
+  section p[class*="tracking-"] {
+    font-size: 15px !important;
+    letter-spacing: 0.22em !important;
+  }
+}
+
+.max-w-3xl.mx-auto.text-center h2,
+section h2.fluid-h2 {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.max-w-3xl.mx-auto.text-center p:last-child {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
