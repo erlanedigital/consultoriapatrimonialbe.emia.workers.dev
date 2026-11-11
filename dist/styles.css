@@ -772,3 +772,31 @@ p[class*="tracking-[0.20em]"] {
   margin-left: auto !important;
   margin-right: auto !important;
 }
+
+
+/* ==========================================================================
+   BADGE DO SIMULADOR: PARCELA REDUZIDA CENTRALIZADA E COM FONTE MAIOR
+   ========================================================================== */
+#sim-badge-reduced {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  margin: 0 auto !important;
+  font-size: 12.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+  padding: 6px 18px !important;
+  border-radius: 999px !important;
+  background: #C9A86A !important;
+  color: #5A1220 !important;
+  box-shadow: 0 3px 10px rgba(90, 18, 32, 0.2) !important;
+}
+
+@media (min-width: 640px) {
+  #sim-badge-reduced {
+    font-size: 13.5px !important;
+    padding: 7px 20px !important;
+    letter-spacing: 0.14em !important;
+  }
+}

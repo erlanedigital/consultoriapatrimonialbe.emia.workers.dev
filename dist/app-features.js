@@ -156,7 +156,7 @@
       '      </div>',
       '      <div style="background: linear-gradient(145deg, #5A1220 0%, #3D0C16 100%); border-radius: 20px; border: 2px solid #C9A86A; padding: clamp(20px, 3.5vw, 32px); color: #FFFFFF; display: flex; flex-direction: column; justify-content: space-between; gap: 20px; box-shadow: 0 12px 35px rgba(90,18,32,0.25); box-sizing: border-box; width: 100%;">',
       '        <div>',
-      '          <div style="display: inline-block; padding: 4px 12px; border-radius: 999px; background: #C9A86A; color: #5A1220; font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px;">★ PARCELA REDUZIDA ATÉ A CONTEMPLAÇÃO</div>',
+      '          <div style="text-align: center; margin-bottom: 14px;"><div id="sim-badge-reduced" style="display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 6px 18px; border-radius: 999px; background: #C9A86A; color: #5A1220; font-size: 12.5px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; box-shadow: 0 2px 8px rgba(0,0,0,0.15); margin: 0 auto;">★ PARCELA REDUZIDA ATÉ A CONTEMPLAÇÃO</div></div>',
       '          <div style="font-size: 13px; color: rgba(255,255,255,0.8); margin-bottom: 4px;">Seu investimento mensal em Reais:</div>',
       '          <div id="sim-reais-val" style="font-family: Fraunces, Georgia, serif; font-size: clamp(26px, 4vw, 38px); font-weight: 700; color: #F3E7C4;">R$ 336,36 <span style="font-size: 14px; font-weight: normal; color: rgba(255,255,255,0.7);">/mês</span></div>',
       '        </div>',
