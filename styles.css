@@ -910,10 +910,33 @@ footer .tracking-\[0\.22em\] {
     padding-bottom: 2.75rem !important;
   }
 
+  
+  /* Eliminar o vão / espaço vazio excessivo no início da tela do celular */
+  #topo {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  #topo > section,
+  #topo .hero-pattern {
+    padding-top: 0.85rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  #topo .hero-pattern > div {
+    padding-top: 0.25rem !important;
+  }
+
+  #topo div[class*="pt-2"],
+  #topo div[class*="pt-6"],
+  #topo div[class*="pt-8"] {
+    padding-top: 0 !important;
+  }
+
   /* 2. Hero Section: Proporção e impacto visual áureo */
   #topo {
-    padding-top: 1.75rem !important;
-    padding-bottom: 2.75rem !important;
+    padding-top: 0 !important;
+    padding-bottom: 2rem !important;
   }
   
   #topo h1.fluid-h1 {
