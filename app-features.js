@@ -585,6 +585,23 @@
         date: new Date().toLocaleString('pt-BR')
       });
       localStorage.setItem('erlane_leads', JSON.stringify(leads));
+      try {
+        var webhookUrl = localStorage.getItem('erlane_app_webhook_url') || '';
+        var webhookToken = localStorage.getItem('erlane_app_webhook_token') || '';
+        fetch('/api/leads', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: nameInput ? nameInput.value : 'Cliente Interessado',
+            phone: phoneInput ? phoneInput.value : '',
+            country: countrySelect ? countrySelect.value : 'Exterior',
+            goal: 'Consórcio com Parcelas Reduzidas',
+            webhookUrl: webhookUrl,
+            webhookToken: webhookToken,
+            createdAt: new Date().toISOString()
+          })
+        }).catch(function(err){ console.log('Sync lead:', err); });
+      } catch(e) {}
       if (window.renderAdminLeads) window.renderAdminLeads();
     }
   }, true);
@@ -835,3 +852,87 @@
       }
     }
   })();
+
+
+  // =========================================================================
+  // INTEGRAÇÃO COM APP PRINCIPAL (PUXAR LEADS & WEBHOOK)
+  // =========================================================================
+  window.testAppWebhook = function() {
+    var url = (document.getElementById('app-webhook-url') || {}).value || '';
+    var token = (document.getElementById('app-webhook-token') || {}).value || '';
+    if (!url || !url.startsWith('http')) {
+      window.showToast('Informe uma URL de Webhook válida (começando com https://).', 'error');
+      return;
+    }
+    localStorage.setItem('erlane_app_webhook_url', url);
+    localStorage.setItem('erlane_app_webhook_token', token);
+    window.showToast('Enviando lead de teste para seu App...', 'info');
+
+    fetch('/api/webhook/test', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url: url, token: token })
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      if (data.success) {
+        window.showToast('✅ Conexão bem-sucedida! Seu App respondeu perfeitamente.', 'success');
+      } else {
+        window.showToast('⚠️ App respondeu: ' + (data.message || data.error), 'error');
+      }
+    })
+    .catch(function(err){
+      window.showToast('Erro ao testar conexão: ' + err.message, 'error');
+    });
+  };
+
+  window.saveAppWebhookConfig = function() {
+    var url = (document.getElementById('app-webhook-url') || {}).value || '';
+    var token = (document.getElementById('app-webhook-token') || {}).value || '';
+    localStorage.setItem('erlane_app_webhook_url', url);
+    localStorage.setItem('erlane_app_webhook_token', token);
+    window.showToast('Configurações de integração salvas com sucesso!', 'success');
+  };
+
+  window.exportLeadsJSON = function() {
+    var leads = localStorage.getItem('erlane_leads') || '[]';
+    var blob = new Blob([leads], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'leads-erlane-mota-' + new Date().toISOString().slice(0,10) + '.json';
+    a.click();
+    window.showToast('Arquivo JSON baixado com sucesso!', 'success');
+  };
+
+  window.exportLeadsCSV = function() {
+    var leads = JSON.parse(localStorage.getItem('erlane_leads') || '[]');
+    if (!leads.length) {
+      window.showToast('Nenhum lead para exportar.', 'error');
+      return;
+    }
+    var csv = 'Nome,Telefone,País,Objetivo,Data\n';
+    leads.forEach(function(l) {
+      csv += '"' + (l.name||'').replace(/"/g, '""') + '","' + 
+             (l.phone||'').replace(/"/g, '""') + '","' + 
+             (l.country||'').replace(/"/g, '""') + '","' + 
+             (l.goal||'').replace(/"/g, '""') + '","' + 
+             (l.date||'') + '"\n';
+    });
+    var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'leads-erlane-mota-' + new Date().toISOString().slice(0,10) + '.csv';
+    a.click();
+    window.showToast('Arquivo CSV/Excel baixado com sucesso!', 'success');
+  };
+
+  window.copyApiPullUrl = function() {
+    var url = window.location.origin + '/api/leads?token=erlane2026';
+    navigator.clipboard.writeText(url).then(function() {
+      window.showToast('URL da API copiada! Cole no seu App para puxar os leads.', 'success');
+    }).catch(function(){
+      window.showToast('URL: ' + url, 'info');
+    });
+  };

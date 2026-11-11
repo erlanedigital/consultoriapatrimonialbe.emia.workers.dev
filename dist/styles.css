@@ -827,3 +827,102 @@ footer .tracking-\[0\.22em\] {
   font-size: 11.5px !important;
   letter-spacing: 0.22em !important;
 }
+
+
+/* ==========================================================================
+   ESPAÇAMENTO ENTRE SÍMBOLO E FRASE (CARDS DE CONSÓRCIO)
+   ========================================================================== */
+#por-que-consorcio .rounded-\[24px\] > div:first-child {
+  margin-bottom: 1.75rem !important;
+}
+
+#por-que-consorcio .rounded-\[24px\] h3 {
+  margin-top: 1.25rem !important;
+  margin-bottom: 0.875rem !important;
+}
+
+/* ==========================================================================
+   REGRA MESTRE 32: CORPO DE TODOS OS TEXTOS JUSTIFICADOS (PADRÃO OURO)
+   ========================================================================== */
+p,
+li,
+blockquote,
+.card p,
+article p,
+#por-que-consorcio p,
+#depois-da-contemplacao p,
+#como-funciona p,
+#vantagens p,
+#sobre p,
+.justify-body p,
+[data-body] {
+  text-align: justify !important;
+  text-justify: inter-word !important;
+  hyphens: auto !important;
+  -webkit-hyphens: auto !important;
+  line-height: 1.7 !important;
+}
+
+/* Exceções de Design: Títulos, Eyebrows Centrais, Botões, Selos e Rodapé */
+h1, h2, h3, h4, h5, h6,
+.eyebrow,
+.max-w-3xl.mx-auto.text-center p:first-child,
+section p[class*="tracking-"],
+p[class*="tracking-[0.24em]"],
+p[class*="tracking-[0.22em]"],
+p[class*="tracking-[0.20em]"],
+#sim-badge-reduced,
+.btn,
+button,
+a.rounded-full {
+  text-align: center !important;
+}
+
+footer,
+footer div,
+footer p,
+footer a,
+footer span {
+  text-align: left !important;
+}
+
+
+/* ==========================================================================
+   CARD SOBRE A ERLANE: ALINHAMENTO PERFEITO À ESQUERDA & TAMANHO EM 88PX
+   ========================================================================== */
+#sobre .rounded-\[28px\],
+div[class*="rounded-[28px]"] {
+  text-align: left !important;
+}
+
+#sobre .rounded-\[28px\] *,
+div[class*="rounded-[28px]"] * {
+  text-align: left !important;
+  margin-left: 0 !important;
+}
+
+#sobre .rounded-\[28px\] span.font-serif,
+div[class*="rounded-[28px]"] span.font-serif,
+div[class*="rounded-[28px]"] span[class*="text-[88px]"] {
+  font-size: 88px !important;
+  line-height: 1 !important;
+  color: #C9A86A !important;
+  display: block !important;
+  text-align: left !important;
+  margin-bottom: 8px !important;
+  font-family: 'Fraunces', Georgia, serif !important;
+}
+
+#sobre .rounded-\[28px\] p,
+div[class*="rounded-[28px]"] p {
+  text-align: left !important;
+  display: block !important;
+  width: auto !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+#sobre .rounded-\[28px\] .gold-line,
+div[class*="rounded-[28px]"] .gold-line {
+  margin-left: 0 !important;
+}
